@@ -14,7 +14,7 @@ interface User {
 export default function Home({ users }: { users: User[] }) {
   return (
     <div>
-      \ <LoginForm />
+      <LoginForm />
     </div>
   )
 }
