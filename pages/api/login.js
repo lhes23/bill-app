@@ -13,7 +13,7 @@ export default async (req, res) => {
         return res.json("Wrong username or password")
       }
     } else {
-      return res.json("No User found")
+      return res.status(300).json("No User found")
     }
   } catch (error) {
     console.error(error)

@@ -1,12 +1,25 @@
+import axios from "axios"
+import { useRouter } from "next/router"
 import React, { useState } from "react"
 
 const LoginForm = () => {
+  const router = useRouter()
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault()
-    console.log({ username, password })
+    axios
+      .post("/api/login", { username, password })
+      .then((res) => {
+        if (res.status >= 300) {
+          console.log("Wrong Username or Password")
+          return
+        }
+        router.push("/dashboard/")
+        console.log(res.status, res.data)
+      })
+      .catch((err) => console.log(err))
   }
   return (
     <div className="hero min-h-screen bg-base-200">
@@ -34,7 +47,7 @@ const LoginForm = () => {
                 <span className="label-text">Password</span>
               </label>
               <input
-                type="text"
+                type="password"
                 placeholder="password"
                 className="input input-bordered"
                 value={password}
