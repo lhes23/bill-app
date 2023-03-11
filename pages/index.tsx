@@ -1,6 +1,5 @@
 import Head from "next/head"
 import { InferGetServerSidePropsType } from "next"
-import RegisterForm from "../components/RegisterForm"
 import LoginForm from "../components/LoginForm"
 
 import connectMongo from "../util/connectMongo"
@@ -13,18 +12,9 @@ interface User {
 }
 
 export default function Home({ users }: { users: User[] }) {
-  console.log(users)
   return (
     <div>
-      <h1>Hello World</h1>
-      {users.map((user: User) => (
-        <div key={user._id}>
-          <p>{user.username}</p>
-          <p>{user.password}</p>
-        </div>
-      ))}
-      <RegisterForm />
-      <LoginForm />
+      \ <LoginForm />
     </div>
   )
 }
