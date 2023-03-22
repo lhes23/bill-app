@@ -1,5 +1,5 @@
 import Head from "next/head"
-import LoginForm from "../components/LoginForm"
+import LoginForm from "@/components/LoginForm"
 
 import connectMongo from "../util/connectMongo"
 import User from "../models/user"
