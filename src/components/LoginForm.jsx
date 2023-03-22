@@ -10,19 +10,20 @@ const LoginForm = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault()
-    // axios
-    //   .post("/api/login", { username, password })
-    //   .then((res) => {
-    //     if (res.status >= 300) {
-    //       // setError(res.message)
-    //       // return
-    // console.log({ status: res.status, data: res.data })
-    // }
-    //     // router.push("/dashboard/")
-    // })
-    // .catch((err) => console.log(err))
-
-    console.log({ username, password })
+    axios
+      .post("/api/login", { username, password })
+      .then((res) => {
+        // if (res.status >= 300) {
+        //   setError(res.message)
+        //   return
+        //   console.log({ status: res.status, data: res.data })
+        // }
+        router.push("/dashboard/")
+      })
+      .catch((err) => {
+        setError(err.message)
+        console.log(err)
+      })
   }
   return (
     <>
@@ -41,6 +42,26 @@ const LoginForm = () => {
           <form onSubmit={submitHandler}>
             <div className="card flex-shrink-0 w-full max-w-xl shadow-2xl bg-base-100">
               <div className="card-body">
+                {error && (
+                  <div className="alert alert-error shadow-lg">
+                    <div>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="stroke-current flex-shrink-0 h-6 w-6"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+                      <span>{error}</span>
+                    </div>
+                  </div>
+                )}
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text">Username</span>

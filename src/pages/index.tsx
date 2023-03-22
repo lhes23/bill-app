@@ -10,7 +10,6 @@ interface IUser {
   password: string
 }
 
-// export default function Home({ users }: { users: IUser[] }) {
 export default function Home() {
   return (
     <>
@@ -20,7 +19,6 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {/* <main className="bg-gradient-to-r from-violet-500 to-fuchsia-500 min-h-screen"> */}
       <main className="bg-[url('/assets/imgs/home-bg.jpg')] bg-fixed bg-cover min-h-screen">
         <div className="">
           <LoginForm />
