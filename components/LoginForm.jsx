@@ -6,6 +6,7 @@ const LoginForm = () => {
   const router = useRouter()
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
+  const [error, setError] = useState(null)
 
   const submitHandler = async (e) => {
     e.preventDefault()
@@ -13,11 +14,11 @@ const LoginForm = () => {
       .post("/api/login", { username, password })
       .then((res) => {
         if (res.status >= 300) {
-          console.log("Wrong Username or Password")
-          return
+          //       // setError(res.message)
+          //       // return
+          console.log({ status: res.status, data: res.data })
         }
-        router.push("/dashboard/")
-        console.log(res.status, res.data)
+        //     // router.push("/dashboard/")
       })
       .catch((err) => console.log(err))
   }
@@ -28,44 +29,53 @@ const LoginForm = () => {
           <h1 className="text-5xl font-bold">Bill Compute App</h1>
           <p className="py-6">Bill Computation and Management Application</p>
         </div>
-        <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-          <div className="card-body">
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Username</span>
-              </label>
-              <input
-                type="text"
-                placeholder="Username"
-                className="input input-bordered"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Password</span>
-              </label>
-              <input
-                type="password"
-                placeholder="password"
-                className="input input-bordered"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              <label className="label">
-                <a href="#" className="label-text-alt link link-hover">
-                  Forgot password?
-                </a>
-              </label>
-            </div>
-            <div className="form-control mt-6">
-              <button className="btn btn-primary" onClick={submitHandler}>
-                Login
-              </button>
+        {error && (
+          <div className="alert alert-error shadow-lg">
+            <div>
+              <span>Error! Task failed successfully.</span>
             </div>
           </div>
-        </div>
+        )}
+        <form>
+          <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+            <div className="card-body">
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Username</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Username"
+                  className="input input-bordered"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                />
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Password</span>
+                </label>
+                <input
+                  type="password"
+                  placeholder="password"
+                  className="input input-bordered"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <label className="label">
+                  <a href="#" className="label-text-alt link link-hover">
+                    Forgot password?
+                  </a>
+                </label>
+              </div>
+              <div className="form-control mt-6">
+                <button className="btn btn-primary" onClick={submitHandler}>
+                  Login
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   )
