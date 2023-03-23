@@ -4,17 +4,19 @@ import { FaHouseUser } from "react-icons/fa"
 const HouseCard = () => {
   return (
     <>
-      <div className="flex items-center p-4 bg-white rounded-lg shadow-lg">
-        <div
-          className={`p-3 mr-4 text-red-500 bg-blue-100 rounded-full hover:cursor-pointer`}
-        >
-          <FaHouseUser size={30} />
-        </div>
-        <div>
-          <p className="mb-2 text-sm font-medium text-gray-600">house.name</p>
-          <p className="text-lg font-semibold text-gray-700">
-            {/* {house.is_occupied ? "Occupied" : "Vacant"} */}
-          </p>
+      <div className="card w-96 glass">
+        <figure>
+          <img
+            src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
+            alt="car!"
+          />
+        </figure>
+        <div className="card-body">
+          <h2 className="card-title">Life hack</h2>
+          <p>How to park your car at your garage?</p>
+          <div className="card-actions justify-end">
+            <button className="btn btn-primary">Learn now!</button>
+          </div>
         </div>
       </div>
     </>
