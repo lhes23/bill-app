@@ -28,7 +28,7 @@ const LoginForm = () => {
   return (
     <>
       <div
-        className="hero py-20 w-4/5 rounded-lg backdrop-blur-sm bg-white/60 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
+        className="hero py-20 w-full lg:w-4/5 rounded-lg backdrop-blur-sm bg-white/60 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
 "
       >
         <div className="hero-content flex-col lg:flex-row lg:px-20">
