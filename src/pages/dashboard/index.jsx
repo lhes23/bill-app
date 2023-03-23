@@ -2,9 +2,9 @@ import React from "react"
 import Head from "next/head"
 import NavBar from "@/components/dashboard/navbar"
 import { appDetails } from "@/pages/_app"
+import HouseCard from "@/components/dashboard/HouseCard"
 
 const Dashboard = () => {
-  console.log(process.env.NODE_ENV)
   return (
     <>
       <Head>
@@ -13,8 +13,9 @@ const Dashboard = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="">
+      <main className="container mx-auto min-h-screen bg-purple-200">
         <NavBar />
+        <HouseCard />
       </main>
     </>
   )
