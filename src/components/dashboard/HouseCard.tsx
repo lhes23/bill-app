@@ -4,7 +4,7 @@ import { FaHouseUser } from "react-icons/fa"
 const HouseCard = () => {
   return (
     <>
-      <div className="card w-96 glass">
+      <div className="card w-3/4 lg:w-96 glass">
         <figure>
           <img
             src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
