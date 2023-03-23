@@ -3,6 +3,7 @@ import Head from "next/head"
 import NavBar from "@/components/dashboard/navbar"
 import { appDetails } from "@/pages/_app"
 import HouseCard from "@/components/dashboard/HouseCard"
+import Footer from "@/components/dashboard/Footer"
 
 const Dashboard = () => {
   return (
@@ -17,6 +18,7 @@ const Dashboard = () => {
         <NavBar />
         <HouseCard />
       </main>
+      <Footer />
     </>
   )
 }
