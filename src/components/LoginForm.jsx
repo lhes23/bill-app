@@ -1,6 +1,6 @@
-import axios from "axios"
 import { useRouter } from "next/router"
 import React, { useState } from "react"
+import client from "@/axios/client"
 
 const LoginForm = () => {
   const router = useRouter()
@@ -10,7 +10,7 @@ const LoginForm = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault()
-    axios
+    client
       .post("/api/login", { username, password })
       .then((res) => {
         // if (res.status >= 300) {
