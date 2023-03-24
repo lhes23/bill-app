@@ -8,7 +8,7 @@ const LoginForm = () => {
   const [password, setPassword] = useState("")
   const [error, setError] = useState(null)
 
-  const submitHandler = async (e) => {
+  const submitHandler = async (e: React.SyntheticEvent) => {
     e.preventDefault()
     client
       .post("/api/login", { username, password })
