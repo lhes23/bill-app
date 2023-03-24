@@ -30,7 +30,7 @@ const NavBar = () => {
               <li>
                 <a>Item 1</a>
               </li>
-              <li tabIndex={0}>
+              <li tabIndex={0} className="bg-base-100">
                 <a className="justify-between">
                   Parent
                   <svg
@@ -43,7 +43,7 @@ const NavBar = () => {
                     <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
                   </svg>
                 </a>
-                <ul className="p-2">
+                <ul className="p-2 z-10">
                   <li>
                     <a>Submenu 1</a>
                   </li>

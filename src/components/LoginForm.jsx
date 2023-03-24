@@ -24,7 +24,10 @@ const LoginForm = () => {
         setError(err.message)
         console.log(err)
       })
+
+    console.log({ username, password })
   }
+
   return (
     <>
       <div

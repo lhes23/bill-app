@@ -27,9 +27,12 @@ const houses = [
 const HouseCard = () => {
   return (
     <>
-      <div className="flex p-20">
+      <div className="lg:flex pt-4 justify-center text-center">
         {houses.map((house) => (
-          <div key={house.id} className="card w-3/4 lg:w-96 glass mx-2">
+          <div
+            key={house.id}
+            className="card w-3/4 lg:w-96 glass mx-auto my-4 lg:mx-4 z-0"
+          >
             <figure>
               <img
                 src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
@@ -37,11 +40,11 @@ const HouseCard = () => {
               />
             </figure>
             <div className="card-body">
-              <h2 className="card-title">{house.name}</h2>
-              <p>How to park your car at your garage?</p>
-              <div className="card-actions justify-end">
-                <button className="btn btn-primary">Learn now!</button>
-              </div>
+              <h2 className="card-title">
+                <FaHouseUser />
+                {house.name}
+              </h2>
+              <p>{house.status ? "Occupied" : "Vacant"}</p>
             </div>
           </div>
         ))}
