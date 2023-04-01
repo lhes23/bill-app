@@ -1,7 +1,8 @@
+import { NextApiRequest, NextApiResponse } from "next"
 import User from "../../models/user"
 import connectMongo from "../../util/connectMongo"
 
-export default async (req, res) => {
+export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     await connectMongo()
     const { username, password } = req.body
