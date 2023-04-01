@@ -7,7 +7,7 @@ import {
   setTotalReadingsDueDate,
   setTotalReadingsEndDate,
   setTotalReadingsStartDate
-} from "@/reduxSlices/houseSlice"
+} from "@/redux/houseSlice"
 
 const TotalReadingForm = () => {
   const { totalReadings } = useAppSelector((state) => state.houses)

@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit"
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux"
-import houseReducer from "@/reduxSlices/houseSlice"
+import houseReducer from "@/redux/houseSlice"
 // import tenantReducer from "../redux/tenantSlice"
 
 export type RootState = ReturnType<typeof store.getState>
