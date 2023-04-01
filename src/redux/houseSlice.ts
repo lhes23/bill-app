@@ -12,7 +12,7 @@ export const getAllHouses = createAsyncThunk(
   "appHouses/getAllHouses",
   async () => {
     try {
-      const response = await client.get("houses/")
+      const response = await client.get("/api/houses")
       const { data } = await response
       return { allHouses: data }
     } catch (error) {
