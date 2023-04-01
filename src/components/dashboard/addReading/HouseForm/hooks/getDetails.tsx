@@ -1,4 +1,4 @@
-import { useAppSelector } from "store"
+import { useAppSelector } from "@/store"
 
 export const GetHouseId = (house: string) => {
   const { allHouses } = useAppSelector((state) => state.houses)

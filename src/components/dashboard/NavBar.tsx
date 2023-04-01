@@ -1,4 +1,5 @@
 import { appDetails } from "@/pages/_app"
+import Link from "next/link"
 import React from "react"
 
 const NavBar = () => {
@@ -96,7 +97,9 @@ const NavBar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Add a Reading</a>
+          <Link href="/dashboard/add-reading" className="btn">
+            Add a Reading
+          </Link>
         </div>
         <div className="dropdown dropdown-end">
           <label tabIndex={0} className="btn btn-ghost btn-circle avatar">

@@ -1,10 +1,15 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import Head from "next/head"
 import NavBar from "@/components/dashboard/NavBar"
 import { appDetails } from "@/pages/_app"
 import HouseCard from "@/components/dashboard/HouseCard"
 import Footer from "@/components/dashboard/Footer"
 import AreaChart, { IDataSets } from "@/components/dashboard/AreaChart"
+import client from "@/axios/client"
+import { AxiosResponse } from "axios"
+import getData from "@/axios/getData"
+import { useAppDispatch, useAppSelector } from "@/store"
+import { getActiveTenants, getAllTenants } from "@/redux/tenantSlice"
 
 const datasets: IDataSets[] = [
   {
@@ -24,6 +29,15 @@ const datasets: IDataSets[] = [
 ]
 
 const Dashboard = () => {
+  const state = useAppSelector((state) => state.tenants)
+  const dispatch = useAppDispatch()
+  useEffect(() => {
+    dispatch(getActiveTenants())
+    dispatch(getAllTenants())
+  }, [])
+
+  console.log(state)
+
   return (
     <>
       <Head>

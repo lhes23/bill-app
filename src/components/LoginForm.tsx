@@ -1,6 +1,8 @@
 import { useRouter } from "next/router"
 import React, { useState } from "react"
 import client from "@/axios/client"
+import Error from "next/error"
+import { AxiosResponse } from "axios"
 
 const LoginForm = () => {
   const router = useRouter()
@@ -12,20 +14,20 @@ const LoginForm = () => {
     e.preventDefault()
     client
       .post("/api/login", { username, password })
-      .then((res) => {
+      .then((res: AxiosResponse) => {
+        // .then((res) => {
         // if (res.status >= 300) {
         //   setError(res.message)
         //   return
         //   console.log({ status: res.status, data: res.data })
         // }
         router.push("/dashboard/")
+        console.log({ res })
       })
-      .catch((err) => {
+      .catch((err: any) => {
         setError(err.message)
         console.log(err)
       })
-
-    console.log({ username, password })
   }
 
   return (

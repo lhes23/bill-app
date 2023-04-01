@@ -1,13 +1,17 @@
+import HouseAComponentForm from "@/components/dashboard/addReading/HouseForm/HouseAComponentForm"
+import HouseBComponentForm from "@/components/dashboard/addReading/HouseForm/HouseBComponentForm"
+import HouseCComponentForm from "@/components/dashboard/addReading/HouseForm/HouseCComponentForm"
+import HouseDComponentForm from "@/components/dashboard/addReading/HouseForm/HouseDComponentForm"
 import TotalReadingForm from "@/components/dashboard/addReading/TotalReadingForm"
 import PageLayout from "@/components/dashboard/layouts/PageLayout"
 import { useAppSelector } from "@/store"
 import React, { FormEvent } from "react"
 
 const AddReading = () => {
-  const { totalReadings } = useAppSelector((state) => state.houses)
+  const houses = useAppSelector((state) => state.houses)
   const formHandler = (e: FormEvent) => {
     e.preventDefault()
-    console.log({ totalReadings })
+    console.log({ houses })
   }
   return (
     <>
@@ -15,10 +19,10 @@ const AddReading = () => {
         <div className="flex justify-center">
           <div className="px-4 py-3 mb-8 bg-gradient-to-tr from-purple-200 to-pink-300 rounded-lg shadow-md md:w-[50vw]">
             <TotalReadingForm />
-            {/* <HouseAComponentForm />
+            <HouseAComponentForm />
             <HouseBComponentForm />
             <HouseCComponentForm />
-            <HouseDComponentForm /> */}
+            <HouseDComponentForm />
             <div className="px-4 py-3 text-right sm:px-6 flex justify-center">
               <button
                 type="submit"
