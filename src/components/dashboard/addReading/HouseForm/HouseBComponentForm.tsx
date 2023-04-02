@@ -1,37 +1,87 @@
 import React from "react"
-import { setHouseBDataReadings } from "@/redux/houseSlice"
+import {
+  setHouseBDataReadings,
+  setHouseMainDataReadings
+} from "@/redux/houseSlice"
 import { useAppDispatch, useAppSelector } from "@/store"
-import { GetHouseId, GetTenantName } from "./hooks/getDetails"
+import {
+  computeMainBill,
+  computeMainConsumption,
+  getHouseDetails
+} from "./hooks/getDetails"
 import HouseComponent from "./HouseComponent"
 
 const HouseBComponentForm = () => {
   const dispatch = useAppDispatch()
-  const { houseBData } = useAppSelector((state) => state.houses)
-  const house_id = GetHouseId(houseBData.name)
-  const tenant = GetTenantName(house_id)
+  const {
+    houseAData,
+    houseBData,
+    houseCData,
+    houseDData,
+    totalReadings,
+    houseMainData
+  } = useAppSelector((state) => state.houses)
 
-  const previousChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) =>
-    dispatch(
+  const housesConsumptions =
+    houseAData.consumption +
+    houseBData.consumption +
+    houseCData.consumption +
+    houseDData.consumption
+
+  // Main Consumption
+  const consumption = computeMainConsumption(
+    totalReadings.consumption,
+    housesConsumptions
+  )
+
+  const housesMainBills =
+    houseAData.bill + houseBData.bill + houseCData.bill + houseDData.bill
+
+  // Main Bill
+  const bill = computeMainBill(totalReadings.bill, housesMainBills)
+
+  const houseBDetails = getHouseDetails(houseBData)
+
+  const previousChangeHandler = async (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    await dispatch(
       setHouseBDataReadings({
-        ...houseBData,
+        ...houseBDetails,
         previous: Number(e.target.value)
       })
     )
-  const presentChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) =>
-    dispatch(
+
+    await dispatch(
+      setHouseMainDataReadings({
+        ...houseMainData,
+        consumption,
+        bill
+      })
+    )
+  }
+  const presentChangeHandler = async (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    await dispatch(
       setHouseBDataReadings({
-        ...houseBData,
-        present: Number(e.target.value),
-        house_id,
-        tenant
+        ...houseBDetails,
+        present: Number(e.target.value)
       })
     )
 
+    await dispatch(
+      setHouseMainDataReadings({
+        ...houseMainData,
+        consumption,
+        bill
+      })
+    )
+  }
   return (
     <>
       <HouseComponent
-        house={houseBData}
-        tenantName={tenant}
+        house={houseBDetails}
         previousChangeHandler={previousChangeHandler}
         presentChangeHandler={presentChangeHandler}
       />

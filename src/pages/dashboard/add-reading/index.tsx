@@ -64,15 +64,15 @@ const AddReading = () => {
       pesoper
     )
 
-    const houseMainConsumption =
-      totalConsumption -
-      (houseAData.consumption +
-        houseBData.consumption +
-        houseCData.consumption +
-        houseDData.consumption)
-    const houseMainBill =
-      totalReadings.bill -
-      (houseAData.bill + houseBData.bill + houseCData.bill + houseDData.bill)
+    // const houseMainConsumption =
+    //   totalConsumption -
+    //   (houseAData.consumption +
+    //     houseBData.consumption +
+    //     houseCData.consumption +
+    //     houseDData.consumption)
+    // const houseMainBill =
+    //   totalReadings.bill -
+    //   (houseAData.bill + houseBData.bill + houseCData.bill + houseDData.bill)
 
     await dispatch(
       setHouseADataReadings({
