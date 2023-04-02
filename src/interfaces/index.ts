@@ -42,8 +42,6 @@ export const months = [
 ]
 
 export interface IHouseInitial {
-  // house_id: number
-  // tenant_id: number
   _id: string
   name: string
   tenantDetails: {
@@ -130,4 +128,20 @@ export interface IReading {
   paid_at: string | null
   house_id: number
   tenant_id: number
+}
+
+// Chart's Interface
+export interface IDataSets {
+  id: number
+  bill: number
+  bill_type: string
+  month: string
+  year: number
+}
+
+export interface IAreaChartProps {
+  datasets: IDataSets[]
+  label: string
+  color: string
+  fillColor: string
 }

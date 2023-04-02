@@ -1,13 +1,5 @@
 import React from "react"
 
-export interface IDataSets {
-  id: number
-  bill: number
-  bill_type: string
-  month: string
-  year: number
-}
-
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -20,6 +12,7 @@ import {
   Legend
 } from "chart.js"
 import { Line } from "react-chartjs-2"
+import { IAreaChartProps } from "@/interfaces"
 
 ChartJS.register(
   CategoryScale,
@@ -37,17 +30,7 @@ export const options = {
   maintainAspectRatio: true
 }
 
-const AreaChart = ({
-  datasets,
-  label,
-  color,
-  fillColor
-}: {
-  datasets: IDataSets[]
-  label: string
-  color: string
-  fillColor: string
-}) => {
+const AreaChart = ({ datasets, label, color, fillColor }: IAreaChartProps) => {
   const data = {
     labels: datasets.map((m) => m.month),
     datasets: [

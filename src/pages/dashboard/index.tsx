@@ -4,14 +4,14 @@ import NavBar from "@/components/dashboard/NavBar"
 import { appDetails } from "@/pages/_app"
 import HouseCard from "@/components/dashboard/HouseCard"
 import Footer from "@/components/dashboard/Footer"
-import AreaChart, { IDataSets } from "@/components/dashboard/AreaChart"
+import AreaChart from "@/components/dashboard/AreaChart"
 import client from "@/axios/client"
 import { AxiosResponse } from "axios"
 import getData from "@/axios/getData"
 import { useAppDispatch, useAppSelector } from "@/store"
 import { getActiveTenants, getAllTenants } from "@/redux/tenantSlice"
 import PageLayout from "@/components/dashboard/layouts/PageLayout"
-import { IHouses } from "@/interfaces"
+import { IDataSets, IHouses } from "@/interfaces"
 
 const datasets: IDataSets[] = [
   {
@@ -73,11 +73,11 @@ const Dashboard = ({ houses }: IHouses) => {
 
 export const getStaticProps = async () => {
   const res = await client.get("/api/houses")
-  const { data } = await res
+  const houses = await res.data
 
   return {
     props: {
-      houses: data
+      houses
     }
   }
 }
