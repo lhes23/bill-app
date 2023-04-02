@@ -22,6 +22,10 @@ export interface IHouse {
   color: string
 }
 
+export interface IHouses {
+  houses: IHouse[]
+}
+
 export const months = [
   "Jan",
   "Feb",

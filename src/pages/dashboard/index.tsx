@@ -11,6 +11,7 @@ import getData from "@/axios/getData"
 import { useAppDispatch, useAppSelector } from "@/store"
 import { getActiveTenants, getAllTenants } from "@/redux/tenantSlice"
 import PageLayout from "@/components/dashboard/layouts/PageLayout"
+import { IHouses } from "@/interfaces"
 
 const datasets: IDataSets[] = [
   {
@@ -29,7 +30,7 @@ const datasets: IDataSets[] = [
   }
 ]
 
-const Dashboard = () => {
+const Dashboard = ({ houses }: IHouses) => {
   const state = useAppSelector((state) => state.tenants)
   const dispatch = useAppDispatch()
   useEffect(() => {
@@ -47,7 +48,7 @@ const Dashboard = () => {
       </Head>
       <main>
         <PageLayout title="Dashboard">
-          <HouseCard />
+          <HouseCard houses={houses} />
 
           <div className="grid grid-cols-1 lg:grid-cols-2 px-4">
             <AreaChart
@@ -68,6 +69,17 @@ const Dashboard = () => {
       <Footer />
     </>
   )
+}
+
+export const getStaticProps = async () => {
+  const res = await client.get("/api/houses")
+  const { data } = await res
+
+  return {
+    props: {
+      houses: data
+    }
+  }
 }
 
 export default Dashboard
