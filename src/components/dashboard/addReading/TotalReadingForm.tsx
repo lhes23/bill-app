@@ -3,6 +3,7 @@ import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 import { useAppDispatch, useAppSelector } from "@/store"
 import {
+  setHouseMainDataReadings,
   setTotalReadings,
   setTotalReadingsDueDate,
   setTotalReadingsEndDate,
@@ -10,7 +11,9 @@ import {
 } from "@/redux/houseSlice"
 
 const TotalReadingForm = () => {
-  const { totalReadings } = useAppSelector((state) => state.houses)
+  const { totalReadings, houseMainData } = useAppSelector(
+    (state) => state.houses
+  )
   const dispatch = useAppDispatch()
 
   const [dueDateLocal, setDueDateLocal] = useState<Date>(
@@ -187,14 +190,22 @@ const TotalReadingForm = () => {
           className={styles.input}
           placeholder="Total Bill"
           value={totalReadings.bill}
-          onChange={(e) =>
+          onChange={async (e) => {
             dispatch(
               setTotalReadings({
                 ...totalReadings,
+                consumption: totalReadings.present - totalReadings.previous,
                 bill: Number(e.target.value)
               })
             )
-          }
+            await dispatch(
+              setHouseMainDataReadings({
+                ...houseMainData,
+                present: totalReadings.present,
+                previous: totalReadings.previous
+              })
+            )
+          }}
         />
       </div>
 

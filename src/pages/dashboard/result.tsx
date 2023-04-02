@@ -116,7 +116,7 @@ const ResultTable = () => {
                           <tr className="">
                             <td>Name of Tenant:</td>
                             <td className={styles.divValue}>
-                              {house.tenantDetails.name}
+                              {house.tenantDetails?.name}
                             </td>
                           </tr>
                           <tr className="">

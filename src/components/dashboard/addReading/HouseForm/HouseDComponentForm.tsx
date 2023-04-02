@@ -59,6 +59,11 @@ const HouseDComponentForm = () => {
         bill
       })
     )
+    console.log({
+      totalReadings,
+      houses: housesConsumptions,
+      houseMainData
+    })
   }
   const presentChangeHandler = async (
     e: React.ChangeEvent<HTMLInputElement>

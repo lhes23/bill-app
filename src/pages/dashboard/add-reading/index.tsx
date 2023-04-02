@@ -12,7 +12,8 @@ import {
   setHouseCDataReadings,
   setHouseDDataReadings,
   setHouseMainDataReadings,
-  setPesoPer
+  setPesoPer,
+  setTotalReadings
 } from "@/redux/houseSlice"
 import { getActiveTenants } from "@/redux/tenantSlice"
 import { useAppDispatch, useAppSelector } from "@/store"
@@ -102,14 +103,14 @@ const AddReading = () => {
         pesoper
       })
     )
-    await dispatch(
-      setHouseMainDataReadings({
-        ...houseMainData,
-        present: totalReadings.present,
-        previous: totalReadings.previous,
-        pesoper
-      })
-    )
+    // await dispatch(
+    //   setHouseMainDataReadings({
+    //     ...houseMainData,
+    //     present: totalReadings.present,
+    //     previous: totalReadings.previous,
+    //     pesoper
+    //   })
+    // )
 
     // Save pesoPer on Redux
     dispatch(setPesoPer(pesoper))
