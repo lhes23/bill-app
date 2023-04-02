@@ -27,12 +27,9 @@ const houses = [
 const HouseCard = () => {
   return (
     <>
-      <div className="lg:flex pt-4 justify-center text-center">
+      <div className="grid grid-cols-2 lg:grid-cols-4 pt-4 justify-evenly text-center">
         {houses.map((house) => (
-          <div
-            key={house.id}
-            className="card w-3/4 lg:w-96 glass mx-auto my-4 lg:mx-4 z-0"
-          >
+          <div key={house.id} className="card glass mx-4 my-4 z-0">
             <figure>
               <img
                 src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"

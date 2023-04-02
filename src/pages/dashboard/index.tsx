@@ -36,8 +36,6 @@ const Dashboard = () => {
     dispatch(getAllTenants())
   }, [])
 
-  console.log(state)
-
   return (
     <>
       <Head>
@@ -49,6 +47,7 @@ const Dashboard = () => {
       <main className="container mx-auto min-h-screen bg-purple-200">
         <NavBar />
         <HouseCard />
+
         <div className="grid grid-cols-1 lg:grid-cols-2 px-4">
           <AreaChart
             datasets={datasets}
