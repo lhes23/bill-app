@@ -19,23 +19,23 @@ const HouseAComponentForm = () => {
     houseMainData
   } = useAppSelector((state) => state.houses)
 
-  const housesConsumptions =
-    houseAData.consumption +
-    houseBData.consumption +
-    houseCData.consumption +
-    houseDData.consumption
+  // const housesConsumptions =
+  //   houseAData.consumption +
+  //   houseBData.consumption +
+  //   houseCData.consumption +
+  //   houseDData.consumption
 
-  // Main Consumption
-  const consumption = computeMainConsumption(
-    totalReadings.consumption,
-    housesConsumptions
-  )
+  // // Main Consumption
+  // const consumption = computeMainConsumption(
+  //   totalReadings.consumption,
+  //   housesConsumptions
+  // )
 
-  const housesMainBills =
-    houseAData.bill + houseBData.bill + houseCData.bill + houseDData.bill
+  // const housesMainBills =
+  //   houseAData.bill + houseBData.bill + houseCData.bill + houseDData.bill
 
-  // Main Bill
-  const bill = computeMainBill(totalReadings.bill, housesMainBills)
+  // // Main Bill
+  // const bill = computeMainBill(totalReadings.bill, housesMainBills)
 
   const houseADetails = getHouseDetails(houseAData)
 
@@ -49,13 +49,13 @@ const HouseAComponentForm = () => {
       })
     )
 
-    await dispatch(
-      setHouseMainDataReadings({
-        ...houseMainData,
-        consumption,
-        bill
-      })
-    )
+    // await dispatch(
+    //   setHouseMainDataReadings({
+    //     ...houseMainData,
+    //     consumption,
+    //     bill
+    //   })
+    // )
   }
   const presentChangeHandler = async (
     e: React.ChangeEvent<HTMLInputElement>
@@ -67,13 +67,13 @@ const HouseAComponentForm = () => {
       })
     )
 
-    await dispatch(
-      setHouseMainDataReadings({
-        ...houseMainData,
-        consumption,
-        bill
-      })
-    )
+    // await dispatch(
+    //   setHouseMainDataReadings({
+    //     ...houseMainData,
+    //     consumption,
+    //     bill
+    //   })
+    // )
   }
   return (
     <>

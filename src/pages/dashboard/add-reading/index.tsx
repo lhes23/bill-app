@@ -2,7 +2,11 @@ import HouseAComponentForm from "@/components/dashboard/addReading/HouseForm/Hou
 import HouseBComponentForm from "@/components/dashboard/addReading/HouseForm/HouseBComponentForm"
 import HouseCComponentForm from "@/components/dashboard/addReading/HouseForm/HouseCComponentForm"
 import HouseDComponentForm from "@/components/dashboard/addReading/HouseForm/HouseDComponentForm"
-import { getBillsAndConsumptions } from "@/components/dashboard/addReading/HouseForm/hooks/getDetails"
+import {
+  computeMainBill,
+  computeMainConsumption,
+  getBillsAndConsumptions
+} from "@/components/dashboard/addReading/HouseForm/hooks/getDetails"
 import TotalReadingForm from "@/components/dashboard/addReading/TotalReadingForm"
 import PageLayout from "@/components/dashboard/layouts/PageLayout"
 import {
@@ -11,6 +15,7 @@ import {
   setHouseBDataReadings,
   setHouseCDataReadings,
   setHouseDDataReadings,
+  setHouseMainDataReadings,
   setPesoPer
 } from "@/redux/houseSlice"
 import { getActiveTenants } from "@/redux/tenantSlice"
@@ -22,8 +27,14 @@ const AddReading = () => {
   const router = useRouter()
   const dispatch = useAppDispatch()
   const { houses } = useAppSelector((state) => state)
-  const { totalReadings, houseAData, houseBData, houseCData, houseDData } =
-    houses
+  const {
+    totalReadings,
+    houseAData,
+    houseBData,
+    houseCData,
+    houseDData,
+    houseMainData
+  } = houses
 
   useEffect(() => {
     dispatch(getAllHouses())
@@ -35,6 +46,24 @@ const AddReading = () => {
 
   const formHandler = async (e: FormEvent) => {
     e.preventDefault()
+
+    const housesConsumptions =
+      houseAData.consumption +
+      houseBData.consumption +
+      houseCData.consumption +
+      houseDData.consumption
+
+    // Main Consumption
+    const consumption = computeMainConsumption(
+      totalReadings.consumption,
+      housesConsumptions
+    )
+
+    const housesMainBills =
+      houseAData.bill + houseBData.bill + houseCData.bill + houseDData.bill
+
+    // Main Bill
+    const bill = computeMainBill(totalReadings.bill, housesMainBills)
 
     const houseAConsumption = getBillsAndConsumptions(
       houseAData.present,
@@ -55,6 +84,14 @@ const AddReading = () => {
       houseDData.present,
       houseDData.previous,
       pesoper
+    )
+
+    await dispatch(
+      setHouseMainDataReadings({
+        ...houseMainData,
+        consumption,
+        bill
+      })
     )
 
     await dispatch(

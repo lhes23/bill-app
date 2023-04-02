@@ -46,7 +46,7 @@ export const getBillsAndConsumptions = (
 export const getHouseDetails = (houseData: any) => {
   const { allHouses } = useAppSelector((state) => state.houses)
   const { activeTenants } = useAppSelector((state) => state.tenants)
-  const data = allHouses.find((house) => house.name === houseData.name)
+  const data = allHouses?.find((house) => house.name === houseData.name)
 
   const houseDetails = {
     ...houseData,

@@ -40,6 +40,7 @@ export const months = [
 export interface IHouseInitial {
   // house_id: number
   // tenant_id: number
+  _id: string
   name: string
   tenantDetails: {
     _id: string

@@ -2,10 +2,10 @@ import React from "react"
 import { useAppDispatch, useAppSelector } from "@/store"
 import { FcElectricity } from "react-icons/fc"
 import { IoWaterSharp } from "react-icons/io5"
-// import { useNavigate } from "react-router-dom"
 import client from "@/axios/client"
 import { useRouter } from "next/router"
 import Link from "next/link"
+import houses from "@/pages/api/houses"
 
 const ResultTable = () => {
   const router = useRouter()
@@ -44,30 +44,35 @@ const ResultTable = () => {
     //     }
     //   })
     //   .catch((err) => console.log(err))
-    // const item = {
-    //   house_id: 1,
-    //   tenant_id: 3,
-    //   bill_type: billType,
-    //   due_date: dueDate,
-    //   start_date: startDate,
-    //   end_date: endDate,
-    //   previous_reading: 1,
-    //   present_reading: 2,
-    //   consumption: 1,
-    //   peso_per_consumption: pesoPer,
-    //   bill
-    // }
-    // client
-    //   .post("readings/", item)
-    //   .then((res) => {
-    //     if (!res.status) {
-    //       console.log("Something went wrong")
-    //     }
-    //     // navigate("/")
-    //   })
-    //   .catch((err) => console.log(err))
+
+    housesData.map((house) => {
+      const item = {
+        house_id: house._id,
+        tenant_id: house.tenantDetails._id,
+        billType,
+        dueDate,
+        startDate,
+        endDate,
+        previousReading: house.previous,
+        presentReading: house.present,
+        consumption: house.consumption,
+        pesoPer,
+        bill: house.bill
+      }
+      client
+        .post("/api/readings/", item)
+        .then((res) => {
+          if (!res.status) {
+            console.log("Something went wrong")
+          }
+        })
+        .catch((err) => console.log(err))
+    })
+
+    router.push("/dashboard")
+
+    console.log({ housesData })
   }
-  console.log({ housesData, houseMainData })
 
   return (
     <>
