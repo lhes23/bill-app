@@ -16,9 +16,9 @@ export interface Reading extends IHouseReading {
 }
 
 export interface IHouse {
-  id: number
+  _id: number
   name: string
-  is_occupied: boolean
+  occupied: boolean
   color: string
 }
 

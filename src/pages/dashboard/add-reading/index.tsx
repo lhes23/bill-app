@@ -107,9 +107,6 @@ const AddReading = () => {
         ...houseMainData,
         present: totalReadings.present,
         previous: totalReadings.previous,
-        consumption: houseMainConsumption,
-        // bill: Number(houseMainBill).toFixed(2),
-        bill: houseMainBill,
         pesoper
       })
     )
