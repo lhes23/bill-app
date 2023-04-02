@@ -10,6 +10,7 @@ import { AxiosResponse } from "axios"
 import getData from "@/axios/getData"
 import { useAppDispatch, useAppSelector } from "@/store"
 import { getActiveTenants, getAllTenants } from "@/redux/tenantSlice"
+import PageLayout from "@/components/dashboard/layouts/PageLayout"
 
 const datasets: IDataSets[] = [
   {
@@ -44,24 +45,25 @@ const Dashboard = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="container mx-auto min-h-screen bg-purple-200">
-        <NavBar />
-        <HouseCard />
+      <main>
+        <PageLayout title="Dashboard">
+          <HouseCard />
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 px-4">
-          <AreaChart
-            datasets={datasets}
-            label="Electric"
-            color="green"
-            fillColor="rgba(23,23,12,0.6)"
-          />
-          <AreaChart
-            datasets={datasets}
-            label="Water"
-            color="blue"
-            fillColor="rgba(23,23,12,0.6)"
-          />
-        </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 px-4">
+            <AreaChart
+              datasets={datasets}
+              label="Electric"
+              color="green"
+              fillColor="rgba(23,23,12,0.6)"
+            />
+            <AreaChart
+              datasets={datasets}
+              label="Water"
+              color="blue"
+              fillColor="rgba(23,23,12,0.6)"
+            />
+          </div>
+        </PageLayout>
       </main>
       <Footer />
     </>
