@@ -35,7 +35,7 @@ const AddReading = () => {
   useEffect(() => {
     dispatch(getAllHouses())
     dispatch(getActiveTenants())
-  }, [dispatch])
+  }, [])
 
   const totalConsumption = totalReadings.present - totalReadings.previous
   const pesoper = Math.round(totalReadings.bill / totalConsumption)
@@ -116,7 +116,7 @@ const AddReading = () => {
     router.push("/dashboard/result")
   }
 
-  console.log(useAppSelector((state) => state))
+  // console.log(useAppSelector((state) => state))
 
   return (
     <>

@@ -38,10 +38,16 @@ export const months = [
 ]
 
 export interface IHouseInitial {
-  house_id: number
-  tenant_id: number
+  // house_id: number
+  // tenant_id: number
   name: string
-  tenant: string
+  tenantDetails: {
+    _id: string
+    name: string
+    active: boolean
+    date_started: string
+    house_id: string
+  }
   previous: number
   present: number
   consumption: number

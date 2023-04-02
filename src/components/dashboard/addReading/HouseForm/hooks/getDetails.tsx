@@ -12,14 +12,17 @@ export const GetTenantName = (houseId: number) => {
     .map((n) => n.name)[0]
 }
 export const computeMainConsumption = (
-  totalConsumption: number,
+  totalReadingsConsumption: number,
   housesConsumptions: number
 ) => {
-  return totalConsumption - housesConsumptions
+  return totalReadingsConsumption - housesConsumptions
 }
 
-export const computeMainBill = (totalBill: number, housesBill: number) => {
-  return totalBill - housesBill
+export const computeMainBill = (
+  totalReadingsBill: number,
+  housesMainBills: number
+) => {
+  return totalReadingsBill - housesMainBills
 }
 
 export const computeTotalConsumption = (
@@ -38,4 +41,17 @@ export const getBillsAndConsumptions = (
     consumption,
     bill
   }
+}
+
+export const getHouseDetails = (houseData: any) => {
+  const { allHouses } = useAppSelector((state) => state.houses)
+  const { activeTenants } = useAppSelector((state) => state.tenants)
+  const data = allHouses.find((house) => house.name === houseData.name)
+
+  const houseDetails = {
+    ...houseData,
+    ...data,
+    tenantDetails: activeTenants.find((tenant) => tenant.house_id === data?._id)
+  }
+  return houseDetails
 }

@@ -75,10 +75,16 @@ interface IInitialState {
 }
 
 const initialHouseData: IHouseInitial = {
-  house_id: 0,
-  tenant_id: 0,
+  // house_id: 0,
+  // tenant_id: 0,
   name: "",
-  tenant: "",
+  tenantDetails: {
+    _id: "",
+    name: "",
+    active: true,
+    date_started: "",
+    house_id: ""
+  },
   previous: 0,
   present: 0,
   consumption: 0,
@@ -91,7 +97,11 @@ const initialState: IInitialState = {
   houseBData: { ...initialHouseData, name: "House B" },
   houseCData: { ...initialHouseData, name: "House C" },
   houseDData: { ...initialHouseData, name: "House D" },
-  houseMainData: { ...initialHouseData, name: "Main", tenant: "Main" },
+  houseMainData: {
+    ...initialHouseData,
+    name: "Main",
+    tenantDetails: { ...initialHouseData.tenantDetails, name: "Main" }
+  },
   pesoPer: 0,
   totalReadings: {
     name: "wholeHouse",

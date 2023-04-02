@@ -1,16 +1,26 @@
-import { IHouseInitial } from "@/interfaces"
+import { IHouseInitial, ITenant } from "@/interfaces"
 import React from "react"
 
-interface IProps {
-  house: IHouseInitial
-  tenantName: string
+type IProps = {
+  // house: IHouseInitial
+  house: {
+    tenantDetails: ITenant | undefined
+    _id?: number | undefined
+    name: string
+    occupied?: boolean | undefined
+    color?: string | undefined
+    previous: number
+    present: number
+    consumption: number
+    bill: number
+  }
+  // tenantName: string
   previousChangeHandler: (e: React.ChangeEvent<HTMLInputElement>) => {}
   presentChangeHandler: (e: React.ChangeEvent<HTMLInputElement>) => {}
 }
 
 const HouseComponent = ({
   house,
-  tenantName,
   previousChangeHandler,
   presentChangeHandler
 }: IProps) => {
@@ -20,7 +30,7 @@ const HouseComponent = ({
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
         <div className="relative">
           <h2 className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
-            {tenantName}
+            {house.tenantDetails?.name}
           </h2>
           <label
             htmlFor="previous_reading"
