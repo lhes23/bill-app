@@ -75,8 +75,7 @@ interface IInitialState {
 }
 
 const initialHouseData: IHouseInitial = {
-  // house_id: 0,
-  // tenant_id: 0,
+  _id: "",
   name: "",
   tenantDetails: {
     _id: "",
