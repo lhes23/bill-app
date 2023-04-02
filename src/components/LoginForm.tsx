@@ -13,7 +13,7 @@ const LoginForm = () => {
   const submitHandler = async (e: React.SyntheticEvent) => {
     e.preventDefault()
     client
-      .post("/api/login", { username, password })
+      .post("/api/login/", { username, password })
       .then((res: AxiosResponse) => {
         // .then((res) => {
         // if (res.status >= 300) {

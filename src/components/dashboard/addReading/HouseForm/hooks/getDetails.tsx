@@ -51,7 +51,9 @@ export const getHouseDetails = (houseData: any) => {
   const houseDetails = {
     ...houseData,
     ...data,
-    tenantDetails: activeTenants.find((tenant) => tenant.house_id === data?._id)
+    tenantDetails: activeTenants?.find(
+      (tenant) => tenant.house_id === data?._id
+    )
   }
   return houseDetails
 }
