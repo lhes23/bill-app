@@ -11,9 +11,7 @@ import {
   setHouseBDataReadings,
   setHouseCDataReadings,
   setHouseDDataReadings,
-  setHouseMainDataReadings,
-  setPesoPer,
-  setTotalReadings
+  setPesoPer
 } from "@/redux/houseSlice"
 import { getActiveTenants } from "@/redux/tenantSlice"
 import { useAppDispatch, useAppSelector } from "@/store"
@@ -24,14 +22,8 @@ const AddReading = () => {
   const router = useRouter()
   const dispatch = useAppDispatch()
   const { houses } = useAppSelector((state) => state)
-  const {
-    totalReadings,
-    houseAData,
-    houseBData,
-    houseCData,
-    houseDData,
-    houseMainData
-  } = houses
+  const { totalReadings, houseAData, houseBData, houseCData, houseDData } =
+    houses
 
   useEffect(() => {
     dispatch(getAllHouses())
@@ -65,16 +57,6 @@ const AddReading = () => {
       pesoper
     )
 
-    // const houseMainConsumption =
-    //   totalConsumption -
-    //   (houseAData.consumption +
-    //     houseBData.consumption +
-    //     houseCData.consumption +
-    //     houseDData.consumption)
-    // const houseMainBill =
-    //   totalReadings.bill -
-    //   (houseAData.bill + houseBData.bill + houseCData.bill + houseDData.bill)
-
     await dispatch(
       setHouseADataReadings({
         ...houseAData,
@@ -103,14 +85,6 @@ const AddReading = () => {
         pesoper
       })
     )
-    // await dispatch(
-    //   setHouseMainDataReadings({
-    //     ...houseMainData,
-    //     present: totalReadings.present,
-    //     previous: totalReadings.previous,
-    //     pesoper
-    //   })
-    // )
 
     // Save pesoPer on Redux
     dispatch(setPesoPer(pesoper))

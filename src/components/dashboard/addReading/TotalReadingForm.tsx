@@ -40,7 +40,7 @@ const TotalReadingForm = () => {
     <>
       <div className="grid grid-cols-1 md:grid-cols-2">
         <div className="relative">
-          <label className={styles.label}>
+          <label className={`${styles.label} z-2`}>
             <span className={styles.labelSpan}>Due Date</span>
           </label>
           <DatePicker
@@ -182,7 +182,7 @@ const TotalReadingForm = () => {
       </div>
       <div className="relative my-4">
         <label className={styles.label}>
-          <span className="text-gray-700 dark:text-gray-400">Total Bill</span>
+          <span className={styles.labelSpan}>Total Bill</span>
         </label>
         <input
           type="number"
@@ -219,17 +219,17 @@ const TotalReadingForm = () => {
 }
 
 const styles = {
-  labelSpan: "text-gray-700 dark:text-gray-400 z-0",
+  labelSpan: "text-gray-700 dark:text-gray-400 z-2",
   input:
     "block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer",
   label:
-    "absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1",
+    "absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1",
   radio:
     "text-purple-600 form-radio focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray",
   submitBtn:
     "relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800",
   submitSpan:
-    "relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0 font-medium"
+    "relative px-5 py-2.5 transition-all ease-in duration-75 bg-white rounded-md group-hover:bg-opacity-0 font-medium"
 }
 
 export default TotalReadingForm
