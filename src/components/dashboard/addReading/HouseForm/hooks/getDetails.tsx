@@ -2,7 +2,7 @@ import { useAppSelector } from "@/store"
 
 export const GetHouseId = (house: string) => {
   const { allHouses } = useAppSelector((state) => state.houses)
-  return allHouses?.filter((h) => h.name === house).map((n) => n.id)[0]
+  return allHouses?.filter((h) => h.name === house).map((n) => n._id)[0]
 }
 
 export const GetTenantName = (houseId: number) => {
@@ -11,6 +11,21 @@ export const GetTenantName = (houseId: number) => {
     .filter((t) => t.house_id === houseId)
     .map((n) => n.name)[0]
 }
+export const computeMainConsumption = (
+  totalConsumption: number,
+  housesConsumptions: number
+) => {
+  return totalConsumption - housesConsumptions
+}
+
+export const computeMainBill = (totalBill: number, housesBill: number) => {
+  return totalBill - housesBill
+}
+
+export const computeTotalConsumption = (
+  totalReadingsPresent: number,
+  totalReadingsPrevious: number
+) => totalReadingsPresent - totalReadingsPrevious
 
 export const getBillsAndConsumptions = (
   present: number,
