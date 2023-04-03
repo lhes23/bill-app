@@ -20,7 +20,7 @@ const PageLayout = ({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <div className="container mx-auto min-h-screen bg-purple-200">
+        <div className="container mx-auto min-h-screen bg-purple-200 pb-10">
           <NavBar />
           <h2 className="my-6 text-2xl font-semibold text-center">{title}</h2>
           <div className="container px-4">{children}</div>
