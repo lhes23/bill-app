@@ -22,10 +22,6 @@ export interface IHouse {
   color: string
 }
 
-export interface IHouses {
-  houses: IHouse[]
-}
-
 export const months = [
   "Jan",
   "Feb",
@@ -69,6 +65,7 @@ export interface ITotalReading {
   endDate: string
 }
 
+// Tenants' Interface
 export interface ITenant {
   id: number
   name: string

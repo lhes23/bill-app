@@ -1,8 +1,8 @@
-import { IHouses } from "@/interfaces"
+import { IHouse } from "@/interfaces"
 import React from "react"
 import { FaHouseUser } from "react-icons/fa"
 
-const HouseCard = ({ houses }: IHouses) => {
+const HouseCard = ({ houses }: { houses: IHouse[] }) => {
   return (
     <>
       <div className="grid grid-cols-2 lg:grid-cols-4 pt-4 justify-evenly text-center">

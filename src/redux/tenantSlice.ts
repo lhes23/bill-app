@@ -34,18 +34,18 @@ export const getAllTenants = createAsyncThunk(
   }
 )
 
-export const getActiveTenants = createAsyncThunk(
-  "appHouses/getActiveTenants",
-  async () => {
-    try {
-      const response = await client.get("/api/active-tenants")
-      const { data } = await response
-      return { activeTenants: data }
-    } catch (error) {
-      console.log(error)
-    }
-  }
-)
+// export const getActiveTenants = createAsyncThunk(
+//   "appHouses/getActiveTenants",
+//   async () => {
+//     try {
+//       const response = await client.get("/api/active-tenants")
+//       const { data } = await response
+//       return { activeTenants: data }
+//     } catch (error) {
+//       console.log(error)
+//     }
+//   }
+// )
 
 export const tenantSlice = createSlice({
   name: "tenants",
@@ -53,18 +53,21 @@ export const tenantSlice = createSlice({
   reducers: {
     setAllTenants: (state, action) => {
       state.tenants = action.payload
+    },
+    setActiveTenants: (state, action) => {
+      state.activeTenants = action.payload
     }
   },
   extraReducers: (builder) => {
     builder.addCase(getAllTenants.fulfilled, (state, action) => {
       state.tenants = action.payload?.allTenants
     })
-    builder.addCase(getActiveTenants.fulfilled, (state, action) => {
-      state.activeTenants = action.payload?.activeTenants
-    })
+    // builder.addCase(getActiveTenants.fulfilled, (state, action) => {
+    //   state.activeTenants = action.payload?.activeTenants
+    // })
   }
 })
 
-export const { setAllTenants } = tenantSlice.actions
+export const { setAllTenants, setActiveTenants } = tenantSlice.actions
 
 export default tenantSlice.reducer

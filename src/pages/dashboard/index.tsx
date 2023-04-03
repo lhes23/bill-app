@@ -1,17 +1,14 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect } from "react"
 import Head from "next/head"
-import NavBar from "@/components/dashboard/NavBar"
 import { appDetails } from "@/pages/_app"
 import HouseCard from "@/components/dashboard/HouseCard"
 import Footer from "@/components/dashboard/Footer"
 import AreaChart from "@/components/dashboard/AreaChart"
-import client from "@/axios/client"
-import { AxiosResponse } from "axios"
 import getData from "@/axios/getData"
 import { useAppDispatch, useAppSelector } from "@/store"
-import { getActiveTenants, getAllTenants } from "@/redux/tenantSlice"
+import { getAllTenants, setActiveTenants } from "@/redux/tenantSlice"
 import PageLayout from "@/components/dashboard/layouts/PageLayout"
-import { IDataSets, IHouses } from "@/interfaces"
+import { IDataSets, IHouse, ITenant } from "@/interfaces"
 
 const datasets: IDataSets[] = [
   {
@@ -30,14 +27,19 @@ const datasets: IDataSets[] = [
   }
 ]
 
-const Dashboard = ({ houses }: IHouses) => {
+type IProps = {
+  houses: IHouse[]
+  activeTenants: ITenant[]
+}
+
+const Dashboard = ({ houses, activeTenants }: IProps) => {
   const state = useAppSelector((state) => state.tenants)
   const dispatch = useAppDispatch()
   useEffect(() => {
-    dispatch(getActiveTenants())
-    dispatch(getAllTenants())
+    dispatch(setActiveTenants(activeTenants))
   }, [])
 
+  console.log({ state, activeTenants })
   return (
     <>
       <Head>
@@ -72,12 +74,12 @@ const Dashboard = ({ houses }: IHouses) => {
 }
 
 export const getStaticProps = async () => {
-  const res = await client.get("/api/houses")
-  const houses = await res.data
-
+  const houses = await getData("/api/houses")
+  const activeTenants = await getData("/api/tenants")
   return {
     props: {
-      houses
+      houses,
+      activeTenants
     }
   }
 }
