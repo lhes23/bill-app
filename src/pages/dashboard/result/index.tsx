@@ -101,7 +101,7 @@ const ResultTable = () => {
                       />
                     )}
                   </div>
-                  <div className="uppercase tracking-wide text-lg md:text-xl font-semibold text-center">
+                  <div className="uppercase tracking-wide text-lg font-semibold text-center">
                     {billType} Consumption Bill
                   </div>
                   <div className="uppercase tracking-wide text-md md:text-lg font-bold text-center">
@@ -110,59 +110,77 @@ const ResultTable = () => {
 
                   <div className="flex flex-col">
                     <div className="overflow-x-auto">
-                      <div className="py-2 inline-block min-w-full px-2">
+                      <div className="py-1 inline-block min-w-full px-2">
                         <div className="overflow-hidden">
                           <table className="table table-zebra w-full">
                             <tbody>
-                              <tr className="">
-                                <td>Due Date:</td>
-                                <td className={`text-lg font-semibold`}>
+                              <tr>
+                                <td className={styles.divValueLabel}>
+                                  Due Date:
+                                </td>
+                                <td
+                                  className={`${styles.divValue} text-md font-semibold`}
+                                >
                                   {dueDate}
                                 </td>
                               </tr>
-                              <tr className="">
-                                <td>Name of Tenant:</td>
+                              <tr>
+                                <td className={styles.divValueLabel}>
+                                  Name of Tenant:
+                                </td>
                                 <td className={styles.divValue}>
                                   {house.tenantDetails?.name}
                                 </td>
                               </tr>
-                              <tr className="">
-                                <td>Date From:</td>
+                              <tr>
+                                <td className={styles.divValueLabel}>
+                                  Date From:
+                                </td>
                                 <td className={styles.divValue}>{startDate}</td>
                               </tr>
-                              <tr className="">
-                                <td>Date To:</td>
+                              <tr>
+                                <td className={styles.divValueLabel}>
+                                  Date To:
+                                </td>
                                 <td className={styles.divValue}>{endDate}</td>
                               </tr>
-                              <tr className="">
-                                <td>Previous Reading:</td>
+                              <tr>
+                                <td className={styles.divValueLabel}>
+                                  Previous Reading:
+                                </td>
                                 <td className={styles.divValue}>
                                   {house.previous}
                                 </td>
                               </tr>
-                              <tr className="">
-                                <td>Present Reading:</td>
+                              <tr>
+                                <td className={styles.divValueLabel}>
+                                  Present Reading:
+                                </td>
                                 <td className={styles.divValue}>
                                   {house.present}
                                 </td>
                               </tr>
-                              <tr className="">
-                                <td>Consumption:</td>
+                              <tr>
+                                <td className={styles.divValueLabel}>
+                                  Consumption:
+                                </td>
                                 <td className={styles.divValue}>
                                   {house.consumption}
                                 </td>
                               </tr>
-                              <tr className="">
-                                <td>
+                              <tr>
+                                <td className={styles.divValueLabel}>
                                   Peso / {billType === "Electric" ? "kW" : "cm"}
                                   :
                                 </td>
                                 <td className={styles.divValue}>₱ {pesoPer}</td>
                               </tr>
-                              <tr className="">
-                                <td>Total Bill:</td>
+                              <tr>
+                                <td className={styles.divValueLabel}>
+                                  Total Bill:
+                                </td>
                                 <td
-                                  className={`${styles.divValue} font-bold text-2xl`}
+                                  className={`${styles.divValue} font-bold text-xl`}
                                 >
                                   ₱ {house.bill.toFixed(2)}
                                 </td>
@@ -192,7 +210,8 @@ const ResultTable = () => {
 }
 
 const styles = {
-  divValue: "text-md font-light p-2 whitespace-nowrap"
+  divValue: "font-light p-2 whitespace-nowrap text-sm",
+  divValueLabel: " p-2 whitespace-nowrap font-semibold"
 }
 
 export default ResultTable
