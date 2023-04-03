@@ -175,17 +175,12 @@ const ResultTable = () => {
             </div>
           </div>
         ))}
-        <div className="flex justify-center mb-8 p-4">
-          <button
-            className="btn btn-outline btn-warning btn-wide mx-2"
-            onClick={() => router.back()}
-          >
+        {/* <div className="container flex justify-center mb-8 p-4"> */}
+        <div className="grid grid-cols-2 justify-evenly gap-2">
+          <button className="btn btn-warning" onClick={() => router.back()}>
             Go Back
           </button>
-          <button
-            onClick={confirmHandler}
-            className="btn btn-primary btn-wide mx-2"
-          >
+          <button onClick={confirmHandler} className="btn btn-primary">
             Confirm
           </button>
         </div>
