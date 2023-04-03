@@ -115,7 +115,10 @@ const AddReading = ({ houses, activeTenants }: IProps) => {
     )
 
     const housesMainBills =
-      houseAData.bill + houseBData.bill + houseCData.bill + houseDData.bill
+      houseAConsumption.bill +
+      houseBConsumption.bill +
+      houseCConsumption.bill +
+      houseDConsumption.bill
 
     // Main Bill
     const bill = computeMainBill(totalReadings.bill, housesMainBills)
@@ -127,12 +130,8 @@ const AddReading = ({ houses, activeTenants }: IProps) => {
         bill
       })
     )
-    console.log({
-      totalReadings,
-      houses: housesConsumptions,
-      houseMainData
-    })
-    // router.push("/dashboard/result")
+
+    router.push("/dashboard/result")
   }
 
   return (
