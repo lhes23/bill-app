@@ -10,7 +10,6 @@ import {
 import TotalReadingForm from "@/components/dashboard/addReading/TotalReadingForm"
 import PageLayout from "@/components/dashboard/layouts/PageLayout"
 import {
-  getAllHouses,
   setHouseADataReadings,
   setHouseBDataReadings,
   setHouseCDataReadings,
@@ -18,7 +17,6 @@ import {
   setHouseMainDataReadings,
   setPesoPer
 } from "@/redux/houseSlice"
-import { getActiveTenants } from "@/redux/tenantSlice"
 import { useAppDispatch, useAppSelector } from "@/store"
 import { useRouter } from "next/router"
 import React, { FormEvent, useEffect } from "react"
@@ -35,11 +33,6 @@ const AddReading = () => {
     houseDData,
     houseMainData
   } = houses
-
-  useEffect(() => {
-    dispatch(getAllHouses())
-    dispatch(getActiveTenants())
-  }, [])
 
   const totalConsumption = totalReadings.present - totalReadings.previous
   const pesoper = Math.round(totalReadings.bill / totalConsumption)
