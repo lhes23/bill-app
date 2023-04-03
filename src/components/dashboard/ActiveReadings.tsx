@@ -1,9 +1,27 @@
-import { useAppSelector } from "@/store"
+import client from "@/axios/client"
+import { setActiveReadings } from "@/redux/houseSlice"
+import { useAppDispatch, useAppSelector } from "@/store"
 import React from "react"
 
 const ActiveReadings = () => {
+  const dispatch = useAppDispatch()
   const { activeReadings, allHouses } = useAppSelector((state) => state.houses)
   const { activeTenants } = useAppSelector((state) => state.tenants)
+
+  const paidHandler = async (_id: string) => {
+    try {
+      const res = await client.put("/api/readings", {
+        _id
+      })
+      if (res.status < 300) {
+        const response = await client.get("/api/readings/active")
+        const { data } = await response
+        await dispatch(setActiveReadings(data))
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <>
@@ -77,7 +95,7 @@ const ActiveReadings = () => {
                   <td className="px-4 py-3 text-sm"> */}
                     <button
                       className="btn btn-outline btn-error"
-                      onClick={() => {}}
+                      onClick={() => paidHandler(activeReading._id)}
                     >
                       Paid
                     </button>
