@@ -5,25 +5,30 @@ import getData from "@/axios/getData"
 import { useAppDispatch } from "@/store"
 import { setActiveTenants } from "@/redux/tenantSlice"
 import PageLayout from "@/components/dashboard/layouts/PageLayout"
-import { IDataSets, IHouse, ITenant } from "@/interfaces"
+import { IDataSets, IHouse, IReading, ITenant } from "@/interfaces"
 import ActiveReadings from "@/components/dashboard/ActiveReadings"
+import { setActiveReadings, setAllHouses } from "@/redux/houseSlice"
 
 export type IProps = {
   houses: IHouse[]
   activeTenants: ITenant[]
   electricBills: IDataSets[]
   waterBills: IDataSets[]
+  activeReadings: IReading[]
 }
 
 const Dashboard = ({
   houses,
   activeTenants,
   electricBills,
-  waterBills
+  waterBills,
+  activeReadings
 }: IProps) => {
   const dispatch = useAppDispatch()
   useEffect(() => {
     dispatch(setActiveTenants(activeTenants))
+    dispatch(setActiveReadings(activeReadings))
+    dispatch(setAllHouses(houses))
   }, [])
 
   return (
@@ -65,12 +70,14 @@ export const getStaticProps = async () => {
   const activeTenants = await getData("/api/tenants/active")
   const electricBills = await getData("/api/monthly-bills/electric")
   const waterBills = await getData("/api/monthly-bills/water")
+  const activeReadings = await getData("/api/readings/active")
   return {
     props: {
       houses,
       activeTenants,
       electricBills,
-      waterBills
+      waterBills,
+      activeReadings
     }
   }
 }

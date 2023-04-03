@@ -72,6 +72,7 @@ interface IInitialState {
   allHouses: IHouse[]
   allYearlyBills: IAllYearlyBills[]
   allReadings: IReading[]
+  activeReadings: IReading[]
 }
 
 const initialHouseData: IHouseInitial = {
@@ -115,13 +116,17 @@ const initialState: IInitialState = {
   },
   allHouses: [],
   allYearlyBills: [],
-  allReadings: []
+  allReadings: [],
+  activeReadings: []
 }
 
 export const houseSlice = createSlice({
   name: "houses",
   initialState,
   reducers: {
+    setActiveReadings: (state, action) => {
+      state.activeReadings = action.payload
+    },
     setAllHouses: (state, action) => {
       state.allHouses = action.payload
     },
@@ -173,6 +178,7 @@ export const houseSlice = createSlice({
 })
 
 export const {
+  setActiveReadings,
   setAllHouses,
   setHousesReadings,
   setPesoPer,

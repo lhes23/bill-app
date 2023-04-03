@@ -10,11 +10,11 @@ export interface IInitialState {
 const initialState: IInitialState = {
   tenants: [
     {
-      id: 0,
+      _id: "",
       name: "",
-      house_id: 0,
+      house_id: "",
       fb_messenger: "",
-      is_active: true,
+      active: true,
       date_started: ""
     }
   ],
