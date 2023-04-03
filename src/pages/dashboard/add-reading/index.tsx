@@ -48,24 +48,6 @@ const AddReading = ({ houses, activeTenants }: IProps) => {
   const formHandler = async (e: FormEvent) => {
     e.preventDefault()
 
-    const housesConsumptions =
-      houseAData.consumption +
-      houseBData.consumption +
-      houseCData.consumption +
-      houseDData.consumption
-
-    // Main Consumption
-    const consumption = computeMainConsumption(
-      totalReadings.consumption,
-      housesConsumptions
-    )
-
-    const housesMainBills =
-      houseAData.bill + houseBData.bill + houseCData.bill + houseDData.bill
-
-    // Main Bill
-    const bill = computeMainBill(totalReadings.bill, housesMainBills)
-
     const houseAConsumption = getBillsAndConsumptions(
       houseAData.present,
       houseAData.previous,
@@ -85,14 +67,6 @@ const AddReading = ({ houses, activeTenants }: IProps) => {
       houseDData.present,
       houseDData.previous,
       pesoper
-    )
-
-    await dispatch(
-      setHouseMainDataReadings({
-        ...houseMainData,
-        consumption,
-        bill
-      })
     )
 
     await dispatch(
@@ -126,10 +100,40 @@ const AddReading = ({ houses, activeTenants }: IProps) => {
 
     // Save pesoPer on Redux
     dispatch(setPesoPer(pesoper))
-    router.push("/dashboard/result")
-  }
 
-  // console.log(useAppSelector((state) => state))
+    // Main House
+    const housesConsumptions =
+      houseAConsumption.consumption +
+      houseBConsumption.consumption +
+      houseCConsumption.consumption +
+      houseDConsumption.consumption
+
+    // Main Consumption
+    const consumption = computeMainConsumption(
+      totalReadings.consumption,
+      housesConsumptions
+    )
+
+    const housesMainBills =
+      houseAData.bill + houseBData.bill + houseCData.bill + houseDData.bill
+
+    // Main Bill
+    const bill = computeMainBill(totalReadings.bill, housesMainBills)
+
+    await dispatch(
+      setHouseMainDataReadings({
+        ...houseMainData,
+        consumption,
+        bill
+      })
+    )
+    console.log({
+      totalReadings,
+      houses: housesConsumptions,
+      houseMainData
+    })
+    // router.push("/dashboard/result")
+  }
 
   return (
     <>

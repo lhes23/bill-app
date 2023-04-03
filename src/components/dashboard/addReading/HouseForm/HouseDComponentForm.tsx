@@ -1,44 +1,12 @@
 import React from "react"
-import {
-  setHouseDDataReadings,
-  setHouseMainDataReadings
-} from "@/redux/houseSlice"
+import { setHouseDDataReadings } from "@/redux/houseSlice"
 import { useAppDispatch, useAppSelector } from "@/store"
-import {
-  computeMainBill,
-  computeMainConsumption,
-  getHouseDetails
-} from "./hooks/getDetails"
+import { getHouseDetails } from "./hooks/getDetails"
 import HouseComponent from "./HouseComponent"
 
 const HouseDComponentForm = () => {
   const dispatch = useAppDispatch()
-  const {
-    houseAData,
-    houseBData,
-    houseCData,
-    houseDData,
-    totalReadings,
-    houseMainData
-  } = useAppSelector((state) => state.houses)
-
-  const housesConsumptions =
-    houseAData.consumption +
-    houseBData.consumption +
-    houseCData.consumption +
-    houseDData.consumption
-
-  // Main Consumption
-  const consumption = computeMainConsumption(
-    totalReadings.consumption,
-    housesConsumptions
-  )
-
-  const housesMainBills =
-    houseAData.bill + houseBData.bill + houseCData.bill + houseDData.bill
-
-  // Main Bill
-  const bill = computeMainBill(totalReadings.bill, housesMainBills)
+  const { houseDData } = useAppSelector((state) => state.houses)
 
   const houseDDetails = getHouseDetails(houseDData)
 
@@ -51,19 +19,6 @@ const HouseDComponentForm = () => {
         previous: Number(e.target.value)
       })
     )
-
-    await dispatch(
-      setHouseMainDataReadings({
-        ...houseMainData,
-        consumption,
-        bill
-      })
-    )
-    console.log({
-      totalReadings,
-      houses: housesConsumptions,
-      houseMainData
-    })
   }
   const presentChangeHandler = async (
     e: React.ChangeEvent<HTMLInputElement>
@@ -72,14 +27,6 @@ const HouseDComponentForm = () => {
       setHouseDDataReadings({
         ...houseDDetails,
         present: Number(e.target.value)
-      })
-    )
-
-    await dispatch(
-      setHouseMainDataReadings({
-        ...houseMainData,
-        consumption,
-        bill
       })
     )
   }
