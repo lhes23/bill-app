@@ -104,7 +104,7 @@ const initialState: IInitialState = {
   pesoPer: 0,
   totalReadings: {
     name: "wholeHouse",
-    billType: "Electric",
+    billType: "electric",
     previous: 0,
     present: 0,
     consumption: 0,

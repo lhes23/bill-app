@@ -107,7 +107,7 @@ const TotalReadingForm = () => {
                 dispatch(
                   setTotalReadings({
                     ...totalReadings,
-                    billType: e.target.value
+                    billType: e.target.value.toLowerCase()
                   })
                 )
               }
@@ -125,7 +125,7 @@ const TotalReadingForm = () => {
                 dispatch(
                   setTotalReadings({
                     ...totalReadings,
-                    billType: e.target.value
+                    billType: e.target.value.toLowerCase()
                   })
                 )
               }
