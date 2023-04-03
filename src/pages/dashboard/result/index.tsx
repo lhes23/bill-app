@@ -59,7 +59,8 @@ const ResultTable = () => {
         consumption: house.consumption,
         pesoPer,
         bill: house.bill,
-        paid: false
+        paid: false,
+        paidDate: ""
       }
       client
         .post("/api/readings/", item)

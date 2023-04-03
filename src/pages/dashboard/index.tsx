@@ -6,6 +6,7 @@ import { useAppDispatch } from "@/store"
 import { setActiveTenants } from "@/redux/tenantSlice"
 import PageLayout from "@/components/dashboard/layouts/PageLayout"
 import { IDataSets, IHouse, ITenant } from "@/interfaces"
+import ActiveReadings from "@/components/dashboard/ActiveReadings"
 
 export type IProps = {
   houses: IHouse[]
@@ -47,6 +48,11 @@ const Dashboard = ({
               color="blue"
               fillColor="rgba(23,23,12,0.6)"
             />
+          </div>
+        </section>
+        <section>
+          <div className="">
+            <ActiveReadings />
           </div>
         </section>
       </PageLayout>

@@ -43,6 +43,9 @@ const ReadingSchema = new Schema({
   },
   paid: {
     type: Boolean
+  },
+  paidDate: {
+    type: String
   }
 })
 
