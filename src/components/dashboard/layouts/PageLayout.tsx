@@ -23,9 +23,7 @@ const PageLayout = ({
         <div className="container mx-auto min-h-screen bg-purple-200">
           <NavBar />
           <h2 className="my-6 text-2xl font-semibold text-center">{title}</h2>
-          <div className="container grid grid-cols-1 lg:grid-cols-2 px-4">
-            {children}
-          </div>
+          <div className="container px-4">{children}</div>
         </div>
       </main>
       <Footer />

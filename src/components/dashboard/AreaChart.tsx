@@ -44,7 +44,7 @@ const AreaChart = ({ datasets, label, color, fillColor }: IAreaChartProps) => {
     ]
   }
   return (
-    <div className="p-4 my-4 md:m-4 bg-white rounded-lg shadow-lg">
+    <div className="px-2 my-4 bg-white rounded-lg shadow-lg">
       <Line options={options} data={data} height="50%" width="100%" />
     </div>
   )

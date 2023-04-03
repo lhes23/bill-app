@@ -42,20 +42,23 @@ const Dashboard = ({ houses, activeTenants }: IProps) => {
   return (
     <>
       <PageLayout title="Dashboard">
-        <HouseCard houses={houses} />
-
-        <AreaChart
-          datasets={datasets}
-          label="Electric"
-          color="green"
-          fillColor="rgba(23,23,12,0.6)"
-        />
-        <AreaChart
-          datasets={datasets}
-          label="Water"
-          color="blue"
-          fillColor="rgba(23,23,12,0.6)"
-        />
+        <section>
+          <HouseCard houses={houses} />
+        </section>
+        <section className="grid grid-cols-1 lg:grid-cols-2">
+          <AreaChart
+            datasets={datasets}
+            label="Electric"
+            color="green"
+            fillColor="rgba(23,23,12,0.6)"
+          />
+          <AreaChart
+            datasets={datasets}
+            label="Water"
+            color="blue"
+            fillColor="rgba(23,23,12,0.6)"
+          />
+        </section>
       </PageLayout>
     </>
   )
