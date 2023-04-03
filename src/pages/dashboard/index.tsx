@@ -62,7 +62,7 @@ const Dashboard = ({
 
 export const getStaticProps = async () => {
   const houses = await getData("/api/houses")
-  const activeTenants = await getData("/api/active-tenants")
+  const activeTenants = await getData("/api/tenants/active")
   const electricBills = await getData("/api/monthly-bills/electric")
   const waterBills = await getData("/api/monthly-bills/water")
   return {

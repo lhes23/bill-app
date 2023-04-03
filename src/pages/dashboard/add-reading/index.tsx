@@ -162,7 +162,7 @@ const AddReading = ({ houses, activeTenants }: IProps) => {
 
 export const getStaticProps = async () => {
   const houses = await getData("/api/houses")
-  const activeTenants = await getData("/api/active-tenants")
+  const activeTenants = await getData("/api/tenants/active")
   return {
     props: {
       houses,
