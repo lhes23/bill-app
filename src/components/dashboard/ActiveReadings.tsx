@@ -4,6 +4,7 @@ import React from "react"
 const ActiveReadings = () => {
   const { activeReadings, allHouses } = useAppSelector((state) => state.houses)
   const { activeTenants } = useAppSelector((state) => state.tenants)
+
   return (
     <>
       <h3 className="my-6 text-xl font-semibold">Active Readings</h3>
@@ -21,11 +22,11 @@ const ActiveReadings = () => {
                 </th>
               </tr>
             </thead>
-            <tbody className="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+            <tbody className="bg-white divide-y">
               {activeReadings.map((activeReading) => (
                 <tr className="" key={activeReading._id}>
                   <td className="px-4 py-3">
-                    <div className="flex items-center text-sm">
+                    <div className="items-center text-sm">
                       {/* Avatar with inset shadow */}
                       <div className="relative hidden w-8 h-8 mr-3 rounded-full md:block">
                         <img
@@ -46,7 +47,7 @@ const ActiveReadings = () => {
                             )?.name
                           }
                         </p>
-                        <p className="text-xs text-gray-600 dark:text-gray-400">
+                        <p className="text-xs text-gray-400">
                           {
                             allHouses.find(
                               (h) => h._id === activeReading.house_id
@@ -59,14 +60,21 @@ const ActiveReadings = () => {
                   <td className="px-4 py-3 text-sm">
                     {activeReading.billType}
                   </td>
-                  <td className="px-4 py-3 text-xs">
-                    <span className="px-2 py-1 font-semibold leading-tight  text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                      {activeReading.bill}
+                  <td className="text-xs">
+                    <span className="px-2 py-1 font-semibold leading-tight  text-green-700 bg-green-100 rounded-full">
+                      ₱ {activeReading.bill}
                     </span>
                   </td>
                   <td className="px-4 py-3 text-sm">{activeReading.dueDate}</td>
-                  <td className="px-4 py-3 text-sm">Edit</td>
                   <td className="px-4 py-3 text-sm">
+                    <button
+                      className="btn btn-outline btn-warning"
+                      onClick={() => {}}
+                    >
+                      Edit
+                    </button>
+                    {/* </td>
+                  <td className="px-4 py-3 text-sm"> */}
                     <button
                       className="btn btn-outline btn-error"
                       onClick={() => {}}
