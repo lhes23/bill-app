@@ -101,14 +101,6 @@ export interface IReading {
   tenant_id: number
 }
 
-export interface IDataSets {
-  id: number
-  bill: number
-  bill_type: string
-  month: string
-  year: number
-}
-
 export interface IReading {
   id: number
   bill_type: string
@@ -129,11 +121,11 @@ export interface IReading {
 
 // Chart's Interface
 export interface IDataSets {
-  id: number
+  _id: number
   bill: number
-  bill_type: string
+  billType: string
   month: string
-  year: number
+  year: string
 }
 
 export interface IAreaChartProps {

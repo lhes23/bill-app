@@ -1,39 +1,25 @@
 import React, { useEffect } from "react"
-import Head from "next/head"
-import { appDetails } from "@/pages/_app"
 import HouseCard from "@/components/dashboard/HouseCard"
-import Footer from "@/components/dashboard/Footer"
 import AreaChart from "@/components/dashboard/AreaChart"
 import getData from "@/axios/getData"
-import { useAppDispatch, useAppSelector } from "@/store"
-import { getAllTenants, setActiveTenants } from "@/redux/tenantSlice"
+import { useAppDispatch } from "@/store"
+import { setActiveTenants } from "@/redux/tenantSlice"
 import PageLayout from "@/components/dashboard/layouts/PageLayout"
 import { IDataSets, IHouse, ITenant } from "@/interfaces"
-
-const datasets: IDataSets[] = [
-  {
-    id: 1,
-    bill: 300,
-    bill_type: "electric",
-    month: "jan",
-    year: 2023
-  },
-  {
-    id: 2,
-    bill: 500,
-    bill_type: "electric",
-    month: "feb",
-    year: 2023
-  }
-]
 
 export type IProps = {
   houses: IHouse[]
   activeTenants: ITenant[]
+  electricBills: IDataSets[]
+  waterBills: IDataSets[]
 }
 
-const Dashboard = ({ houses, activeTenants }: IProps) => {
-  const state = useAppSelector((state) => state.tenants)
+const Dashboard = ({
+  houses,
+  activeTenants,
+  electricBills,
+  waterBills
+}: IProps) => {
   const dispatch = useAppDispatch()
   useEffect(() => {
     dispatch(setActiveTenants(activeTenants))
@@ -48,7 +34,7 @@ const Dashboard = ({ houses, activeTenants }: IProps) => {
         <section className="grid grid-cols-1 lg:grid-cols-2">
           <div className="m-1">
             <AreaChart
-              datasets={datasets}
+              datasets={electricBills}
               label="Electric"
               color="green"
               fillColor="rgba(23,23,12,0.6)"
@@ -56,7 +42,7 @@ const Dashboard = ({ houses, activeTenants }: IProps) => {
           </div>
           <div className="m-1">
             <AreaChart
-              datasets={datasets}
+              datasets={waterBills}
               label="Water"
               color="blue"
               fillColor="rgba(23,23,12,0.6)"
@@ -71,10 +57,14 @@ const Dashboard = ({ houses, activeTenants }: IProps) => {
 export const getStaticProps = async () => {
   const houses = await getData("/api/houses")
   const activeTenants = await getData("/api/active-tenants")
+  const electricBills = await getData("/api/monthly-bills/electric")
+  const waterBills = await getData("/api/monthly-bills/water")
   return {
     props: {
       houses,
-      activeTenants
+      activeTenants,
+      electricBills,
+      waterBills
     }
   }
 }
