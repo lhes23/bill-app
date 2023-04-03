@@ -27,7 +27,7 @@ const datasets: IDataSets[] = [
   }
 ]
 
-type IProps = {
+export type IProps = {
   houses: IHouse[]
   activeTenants: ITenant[]
 }
@@ -39,7 +39,6 @@ const Dashboard = ({ houses, activeTenants }: IProps) => {
     dispatch(setActiveTenants(activeTenants))
   }, [])
 
-  console.log({ state, activeTenants })
   return (
     <>
       <Head>
@@ -75,7 +74,7 @@ const Dashboard = ({ houses, activeTenants }: IProps) => {
 
 export const getStaticProps = async () => {
   const houses = await getData("/api/houses")
-  const activeTenants = await getData("/api/tenants")
+  const activeTenants = await getData("/api/active-tenants")
   return {
     props: {
       houses,

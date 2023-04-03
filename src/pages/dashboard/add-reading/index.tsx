@@ -1,3 +1,4 @@
+import getData from "@/axios/getData"
 import HouseAComponentForm from "@/components/dashboard/addReading/HouseForm/HouseAComponentForm"
 import HouseBComponentForm from "@/components/dashboard/addReading/HouseForm/HouseBComponentForm"
 import HouseCComponentForm from "@/components/dashboard/addReading/HouseForm/HouseCComponentForm"
@@ -10,6 +11,7 @@ import {
 import TotalReadingForm from "@/components/dashboard/addReading/TotalReadingForm"
 import PageLayout from "@/components/dashboard/layouts/PageLayout"
 import {
+  setAllHouses,
   setHouseADataReadings,
   setHouseBDataReadings,
   setHouseCDataReadings,
@@ -20,11 +22,12 @@ import {
 import { useAppDispatch, useAppSelector } from "@/store"
 import { useRouter } from "next/router"
 import React, { FormEvent, useEffect } from "react"
+import { IProps } from "@/pages/dashboard"
+import { setActiveTenants } from "@/redux/tenantSlice"
 
-const AddReading = () => {
+const AddReading = ({ houses, activeTenants }: IProps) => {
   const router = useRouter()
   const dispatch = useAppDispatch()
-  const { houses } = useAppSelector((state) => state)
   const {
     totalReadings,
     houseAData,
@@ -32,7 +35,12 @@ const AddReading = () => {
     houseCData,
     houseDData,
     houseMainData
-  } = houses
+  } = useAppSelector((state) => state.houses)
+
+  useEffect(() => {
+    dispatch(setAllHouses(houses))
+    dispatch(setActiveTenants(activeTenants))
+  }, [])
 
   const totalConsumption = totalReadings.present - totalReadings.previous
   const pesoper = Math.round(totalReadings.bill / totalConsumption)
@@ -147,6 +155,17 @@ const AddReading = () => {
       </PageLayout>
     </>
   )
+}
+
+export const getStaticProps = async () => {
+  const houses = await getData("/api/houses")
+  const activeTenants = await getData("/api/active-tenants")
+  return {
+    props: {
+      houses,
+      activeTenants
+    }
+  }
 }
 
 export default AddReading

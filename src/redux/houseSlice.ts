@@ -122,6 +122,9 @@ export const houseSlice = createSlice({
   name: "houses",
   initialState,
   reducers: {
+    setAllHouses: (state, action) => {
+      state.allHouses = action.payload
+    },
     setHousesReadings: (state, action) => {
       state.houses = action.payload
     },
@@ -170,6 +173,7 @@ export const houseSlice = createSlice({
 })
 
 export const {
+  setAllHouses,
   setHousesReadings,
   setPesoPer,
   setTotalReadings,

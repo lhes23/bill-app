@@ -58,7 +58,8 @@ const ResultTable = () => {
         presentReading: house.present,
         consumption: house.consumption,
         pesoPer,
-        bill: house.bill
+        bill: house.bill,
+        paid: false
       }
       client
         .post("/api/readings/", item)
@@ -71,9 +72,8 @@ const ResultTable = () => {
     })
 
     router.push("/dashboard")
-
-    console.log({ housesData })
   }
+  console.log({ housesData, state: useAppSelector((state) => state) })
 
   return (
     <>

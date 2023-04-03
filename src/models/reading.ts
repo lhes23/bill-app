@@ -40,6 +40,9 @@ const ReadingSchema = new Schema({
   },
   bill: {
     type: Number
+  },
+  paid: {
+    type: Boolean
   }
 })
 
