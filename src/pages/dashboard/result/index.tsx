@@ -81,7 +81,7 @@ const ResultTable = () => {
         {housesData.map((house) => (
           <div
             key={house.name}
-            className="max-w-md mx-auto my-4 rounded-xl shadow-lg overflow-hidden md:max-w-2xl"
+            className="mx-2 my-4 rounded-xl shadow-lg overflow-hidden"
           >
             <div data-theme="light">
               <div className="px-2 py-4">

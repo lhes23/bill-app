@@ -5,9 +5,9 @@ import { FaHouseUser } from "react-icons/fa"
 const HouseCard = ({ houses }: { houses: IHouse[] }) => {
   return (
     <>
-      <div className="grid grid-cols-2 lg:grid-cols-4 pt-4 justify-evenly text-center">
+      <div className="grid grid-cols-2 lg:grid-cols-4 pt-4 justify-evenly text-center gap-2">
         {houses.map((house) => (
-          <div key={house._id} className="card glass mx-4 my-4 z-0">
+          <div key={house._id} className="card glass my-4 z-0">
             <figure>
               <img
                 src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
