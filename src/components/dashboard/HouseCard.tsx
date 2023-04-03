@@ -10,7 +10,11 @@ const HouseCard = ({ houses }: { houses: IHouse[] }) => {
           <div key={house._id} className="card glass my-4 z-0">
             <figure>
               <img
-                src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
+                src={
+                  house.occupied
+                    ? `/assets/imgs/green-house.jpg`
+                    : `/assets/imgs/red-house.jpg`
+                }
                 alt="car!"
               />
             </figure>
