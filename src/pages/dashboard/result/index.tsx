@@ -4,8 +4,6 @@ import { FcElectricity } from "react-icons/fc"
 import { IoWaterSharp } from "react-icons/io5"
 import client from "@/axios/client"
 import { useRouter } from "next/router"
-import Link from "next/link"
-import houses from "@/pages/api/houses"
 import PageLayout from "@/components/dashboard/layouts/PageLayout"
 
 const ResultTable = () => {
@@ -46,7 +44,7 @@ const ResultTable = () => {
       })
       .catch((err) => console.log(err))
 
-    housesData.map((house) => {
+    housesData?.map((house) => {
       const item = {
         house_id: house._id,
         tenant_id: house.tenantDetails._id,
@@ -71,10 +69,8 @@ const ResultTable = () => {
         })
         .catch((err) => console.log(err))
     })
-
     router.push("/dashboard")
   }
-  console.log({ housesData, state: useAppSelector((state) => state) })
 
   return (
     <>
