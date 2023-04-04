@@ -1,17 +1,5 @@
 import { useAppSelector } from "@/store"
 
-// export const GetHouseId = (house: string) => {
-//   const { allHouses } = useAppSelector((state) => state.houses)
-//   return allHouses?.filter((h) => h.name === house).map((n) => n._id)[0]
-// }
-
-// export const GetTenantName = (houseId: string) => {
-//   const { activeTenants } = useAppSelector((state) => state.tenants)
-//   return activeTenants
-//     .filter((t) => t.house_id === houseId)
-//     .map((n) => n.name)[0]
-// }
-
 export const computeMainConsumption = (
   totalReadingsConsumption: number,
   housesConsumptions: number
