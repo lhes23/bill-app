@@ -9,7 +9,7 @@ import { IDataSets, IHouse, IReading, ITenant } from "@/interfaces"
 import ActiveReadings from "@/components/dashboard/ActiveReadings"
 import { setActiveReadings, setAllHouses } from "@/redux/houseSlice"
 
-export type IProps = {
+type IProps = {
   houses: IHouse[]
   activeTenants: ITenant[]
   electricBills: IDataSets[]

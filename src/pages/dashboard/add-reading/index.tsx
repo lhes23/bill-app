@@ -22,8 +22,13 @@ import {
 import { useAppDispatch, useAppSelector } from "@/store"
 import { useRouter } from "next/router"
 import React, { FormEvent, useEffect } from "react"
-import { IProps } from "@/pages/dashboard"
 import { setActiveTenants } from "@/redux/tenantSlice"
+import { IHouse, ITenant } from "@/interfaces"
+
+type IProps = {
+  houses: IHouse[]
+  activeTenants: ITenant[]
+}
 
 const AddReading = ({ houses, activeTenants }: IProps) => {
   const router = useRouter()
