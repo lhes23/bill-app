@@ -88,18 +88,10 @@ const ResultTable = () => {
               <div data-theme="light">
                 <div className="px-2 py-4">
                   <div className="flex justify-center">
-                    {billType === "Electric" ? (
-                      <FcElectricity
-                        color="white"
-                        size={40}
-                        className="bg-green-500 rounded-full"
-                      />
+                    {billType === "electric" ? (
+                      <FcElectricity color="white" size={40} />
                     ) : (
-                      <IoWaterSharp
-                        color="white"
-                        size={40}
-                        className="bg-blue-500 rounded-full"
-                      />
+                      <IoWaterSharp color="blue" size={40} />
                     )}
                   </div>
                   <div className="uppercase tracking-wide text-lg font-semibold text-center">
@@ -171,7 +163,7 @@ const ResultTable = () => {
                               </tr>
                               <tr>
                                 <td className={styles.divValueLabel}>
-                                  Peso / {billType === "Electric" ? "kW" : "cm"}
+                                  Peso / {billType === "electric" ? "kW" : "cm"}
                                   :
                                 </td>
                                 <td className={styles.divValue}>₱ {pesoPer}</td>
