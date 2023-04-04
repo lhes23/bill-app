@@ -1,6 +1,5 @@
 import { IHouse } from "@/interfaces"
 import React from "react"
-import { FaHouseUser } from "react-icons/fa"
 
 const HouseCard = ({ houses }: { houses: IHouse[] }) => {
   return (
