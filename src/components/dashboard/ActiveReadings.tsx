@@ -1,4 +1,5 @@
 import client from "@/axios/client"
+import getData from "@/axios/getData"
 import { setActiveReadings } from "@/redux/houseSlice"
 import { useAppDispatch, useAppSelector } from "@/store"
 import React from "react"
@@ -14,8 +15,8 @@ const ActiveReadings = () => {
         _id
       })
       if (res.status < 300) {
-        const response = await client.get("/api/readings/active")
-        const { data } = await response
+        // const response = await client.get("/api/readings/active")
+        const data = await getData("/api/readings/active")
         await dispatch(setActiveReadings(data))
       }
     } catch (error) {
