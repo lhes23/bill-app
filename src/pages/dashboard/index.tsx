@@ -65,7 +65,8 @@ const Dashboard = ({
   )
 }
 
-export const getStaticProps = async () => {
+// export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const houses = await getData("/api/houses")
   const activeTenants = await getData("/api/tenants/active")
   const electricBills = await getData("/api/monthly-bills/electric")
