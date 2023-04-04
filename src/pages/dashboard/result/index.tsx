@@ -114,9 +114,7 @@ const ResultTable = () => {
                                 </td>
                               </tr>
                               <tr>
-                                <td className={styles.divValueLabel}>
-                                  Name of Tenant:
-                                </td>
+                                <td className={styles.divValueLabel}>Name:</td>
                                 <td className={styles.divValue}>
                                   {house.tenantDetails?.name}
                                 </td>
