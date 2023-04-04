@@ -169,7 +169,7 @@ const ResultTable = () => {
                                 <td
                                   className={`${styles.divValue} font-bold text-xl`}
                                 >
-                                  ₱ {house.bill.toFixed(2)}
+                                  ₱ {house?.bill?.toFixed(2)}
                                 </td>
                               </tr>
                             </tbody>
