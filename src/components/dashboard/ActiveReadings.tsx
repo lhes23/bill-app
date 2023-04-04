@@ -43,7 +43,7 @@ const ActiveReadings = () => {
             <tbody className="bg-white divide-y">
               {activeReadings.map((activeReading) => (
                 <tr className="" key={activeReading._id}>
-                  <td className="">
+                  <td className="px-4">
                     <div className="items-center text-sm">
                       <div>
                         <p className="font-semibold">
