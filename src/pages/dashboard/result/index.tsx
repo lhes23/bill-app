@@ -80,7 +80,7 @@ const ResultTable = () => {
     <>
       <PageLayout title="Result">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-1">
-          {housesData.map((house) => (
+          {housesData?.map((house) => (
             <div
               key={house.name}
               className="mx-2 my-4 rounded-xl shadow-lg overflow-hidden"
