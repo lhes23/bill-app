@@ -56,8 +56,8 @@ export interface IHouseInitial {
 export interface ITotalReading {
   name: string
   billType: string
-  previous: number | null
-  present: number | null
+  previous: number | string | null
+  present: number | string | null
   consumption: number
   bill: number | null
   dueDate: string

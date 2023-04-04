@@ -47,32 +47,52 @@ const AddReading = ({ houses, activeTenants }: IProps) => {
     dispatch(setActiveTenants(activeTenants))
   }, [])
 
-  const totalConsumption = totalReadings.present - totalReadings.previous
-  const pesoper = Math.round(totalReadings.bill / totalConsumption)
-
   const formHandler = async (e: FormEvent) => {
     e.preventDefault()
 
-    const houseAConsumption = getBillsAndConsumptions(
-      houseAData.present,
-      houseAData.previous,
-      pesoper
+    if (
+      !totalReadings.present ||
+      !totalReadings.previous ||
+      !totalReadings.bill
     )
-    const houseBConsumption = getBillsAndConsumptions(
-      houseBData.present,
-      houseBData.previous,
-      pesoper
-    )
-    const houseCConsumption = getBillsAndConsumptions(
-      houseCData.present,
-      houseCData.previous,
-      pesoper
-    )
-    const houseDConsumption = getBillsAndConsumptions(
-      houseDData.present,
-      houseDData.previous,
-      pesoper
-    )
+      return console.log("Total Readings Present and Previous must not be null")
+
+    const totalConsumption = +totalReadings.present - +totalReadings.previous
+    const pesoper = Math.round(+totalReadings.bill / totalConsumption)
+
+    const houseAConsumption =
+      !houseAData.present || !houseAData.previous
+        ? ""
+        : getBillsAndConsumptions(
+            houseAData.present,
+            houseAData.previous,
+            pesoper
+          )
+
+    const houseBConsumption =
+      !houseBData.present || !houseBData.previous
+        ? ""
+        : getBillsAndConsumptions(
+            houseBData.present,
+            houseBData.previous,
+            pesoper
+          )
+    const houseCConsumption =
+      !houseCData.present || !houseCData.previous
+        ? ""
+        : getBillsAndConsumptions(
+            houseCData.present,
+            houseCData.previous,
+            pesoper
+          )
+    const houseDConsumption =
+      !houseDData.present || !houseDData.previous
+        ? ""
+        : getBillsAndConsumptions(
+            houseDData.present,
+            houseDData.previous,
+            pesoper
+          )
 
     await dispatch(
       setHouseADataReadings({
@@ -106,6 +126,15 @@ const AddReading = ({ houses, activeTenants }: IProps) => {
     // Save pesoPer on Redux
     dispatch(setPesoPer(pesoper))
 
+    if (
+      !houseAConsumption ||
+      !houseBConsumption ||
+      !houseCConsumption ||
+      !houseDConsumption
+    ) {
+      return console.log("No consumption found")
+    }
+
     // Main House
     const housesConsumptions =
       houseAConsumption.consumption +
@@ -126,7 +155,9 @@ const AddReading = ({ houses, activeTenants }: IProps) => {
       houseDConsumption.bill
 
     // Main Bill
-    const bill = computeMainBill(totalReadings.bill, housesMainBills)
+    const bill = !totalReadings.bill
+      ? ""
+      : computeMainBill(totalReadings.bill, housesMainBills)
 
     await dispatch(
       setHouseMainDataReadings({

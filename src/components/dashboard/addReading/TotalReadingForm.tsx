@@ -14,6 +14,9 @@ const TotalReadingForm = () => {
   const { totalReadings, houseMainData } = useAppSelector(
     (state) => state.houses
   )
+  const [prev, setPrev] = useState<number>()
+  const [pres, setPres] = useState<number>()
+
   const dispatch = useAppDispatch()
 
   const [dueDateLocal, setDueDateLocal] = useState<Date>(
@@ -147,15 +150,16 @@ const TotalReadingForm = () => {
             id="previous_reading"
             className={styles.input}
             placeholder="Previous Reading"
-            value={totalReadings.previous}
-            onChange={(e) =>
+            value={prev}
+            onChange={(e) => {
               dispatch(
                 setTotalReadings({
                   ...totalReadings,
                   previous: Number(e.target.value)
                 })
               )
-            }
+              setPrev(Number(e.target.value))
+            }}
           />
         </div>
         <div className="relative">
@@ -168,15 +172,16 @@ const TotalReadingForm = () => {
             id="present_reading"
             className={styles.input}
             placeholder="Present Reading"
-            value={totalReadings.present}
-            onChange={(e) =>
+            value={pres}
+            onChange={(e) => {
               dispatch(
                 setTotalReadings({
                   ...totalReadings,
                   present: Number(e.target.value)
                 })
               )
-            }
+              setPres(Number(e.target.value))
+            }}
           />
         </div>
       </div>
@@ -189,12 +194,15 @@ const TotalReadingForm = () => {
           id="total_reading"
           className={styles.input}
           placeholder="Total Bill"
-          value={totalReadings.bill}
+          value={totalReadings.bill ? totalReadings.bill : ""}
           onChange={async (e) => {
+            if (!pres || !prev)
+              return console.log("Present and Previous must be not null")
+            const consumption = pres - prev
             dispatch(
               setTotalReadings({
                 ...totalReadings,
-                consumption: totalReadings.present - totalReadings.previous,
+                consumption,
                 bill: Number(e.target.value)
               })
             )
