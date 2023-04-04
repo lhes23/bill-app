@@ -85,10 +85,10 @@ const initialHouseData: IHouseInitial = {
     date_started: "",
     house_id: ""
   },
-  previous: 0,
-  present: 0,
-  consumption: 0,
-  bill: 0
+  previous: null,
+  present: null,
+  consumption: null,
+  bill: null
 }
 
 const initialState: IInitialState = {
@@ -106,10 +106,10 @@ const initialState: IInitialState = {
   totalReadings: {
     name: "wholeHouse",
     billType: "electric",
-    previous: 0,
-    present: 0,
+    previous: null,
+    present: null,
     consumption: 0,
-    bill: 0,
+    bill: null,
     dueDate: "",
     startDate: "",
     endDate: ""

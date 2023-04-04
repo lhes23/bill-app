@@ -47,19 +47,19 @@ export interface IHouseInitial {
     date_started: string
     house_id: string
   }
-  previous: number
-  present: number
-  consumption: number
-  bill: number
+  previous: number | null
+  present: number | null
+  consumption: number | null
+  bill: number | null
 }
 
 export interface ITotalReading {
   name: string
   billType: string
-  previous: number
-  present: number
+  previous: number | null
+  present: number | null
   consumption: number
-  bill: number
+  bill: number | null
   dueDate: string
   startDate: string
   endDate: string
