@@ -41,21 +41,21 @@ const ActiveReadings = () => {
               </tr>
             </thead>
             <tbody className="bg-white divide-y">
-              {activeReadings.map((activeReading) => (
+              {activeReadings?.map((activeReading) => (
                 <tr className="" key={activeReading._id}>
                   <td className="px-4">
                     <div className="items-center text-sm">
                       <div>
                         <p className="font-semibold">
                           {
-                            activeTenants.find(
+                            activeTenants?.find(
                               (t) => t._id == activeReading.tenant_id
                             )?.name
                           }
                         </p>
                         <p className="text-xs text-gray-400">
                           {
-                            allHouses.find(
+                            allHouses?.find(
                               (h) => h._id === activeReading.house_id
                             )?.name
                           }
