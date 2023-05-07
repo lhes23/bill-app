@@ -58,7 +58,8 @@ const AddReading = ({ houses, activeTenants }: IProps) => {
       return console.log("Total Readings Present and Previous must not be null")
 
     const totalConsumption = +totalReadings.present - +totalReadings.previous
-    const pesoper = Math.round(+totalReadings.bill / totalConsumption)
+    // const pesoper = Math.round(+totalReadings.bill / totalConsumption)
+    const pesoper = Math.ceil(+totalReadings.bill / totalConsumption)
 
     const houseAConsumption =
       !houseAData.present || !houseAData.previous
