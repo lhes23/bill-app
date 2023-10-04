@@ -61,39 +61,28 @@ const AddReading = ({ houses, activeTenants }: IProps) => {
     const pesoper = Math.round(+totalReadings.bill / totalConsumption)
     // const pesoper = Math.ceil(+totalReadings.bill / totalConsumption)
 
-    const houseAConsumption =
-      !houseAData.present || !houseAData.previous
-        ? ""
-        : getBillsAndConsumptions(
-            houseAData.present,
-            houseAData.previous,
-            pesoper
-          )
+    const houseAConsumption = getBillsAndConsumptions(
+      houseAData.present ?? 0,
+      houseAData.previous ?? 0,
+      pesoper
+    )
 
-    const houseBConsumption =
-      !houseBData.present || !houseBData.previous
-        ? ""
-        : getBillsAndConsumptions(
-            houseBData.present,
-            houseBData.previous,
-            pesoper
-          )
-    const houseCConsumption =
-      !houseCData.present || !houseCData.previous
-        ? ""
-        : getBillsAndConsumptions(
-            houseCData.present,
-            houseCData.previous,
-            pesoper
-          )
-    const houseDConsumption =
-      !houseDData.present || !houseDData.previous
-        ? ""
-        : getBillsAndConsumptions(
-            houseDData.present,
-            houseDData.previous,
-            pesoper
-          )
+    const houseBConsumption = getBillsAndConsumptions(
+      houseBData.present ?? 0,
+      houseBData.previous ?? 0,
+      pesoper
+    )
+
+    const houseCConsumption = getBillsAndConsumptions(
+      houseCData.present ?? 0,
+      houseCData.previous ?? 0,
+      pesoper
+    )
+    const houseDConsumption = getBillsAndConsumptions(
+      houseDData.present ?? 0,
+      houseDData.previous ?? 0,
+      pesoper
+    )
 
     await dispatch(
       setHouseADataReadings({
